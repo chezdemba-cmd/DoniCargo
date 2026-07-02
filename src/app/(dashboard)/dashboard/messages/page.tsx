@@ -1,5 +1,6 @@
 import { createClient } from "@/lib/supabase/server"
 import { Chat } from "@/components/chat"
+import { QuoteList } from "./quote-list"
 import { MessageSquare, AlertCircle } from "lucide-react"
 
 export const metadata = {
@@ -28,7 +29,14 @@ export default async function MessagesPage() {
     title,
     origin,
     destination,
-    status
+    status,
+    quotes (
+      id,
+      amount_cents,
+      status,
+      transitaire_id,
+      profiles ( full_name )
+    )
   `)
 
   if (!isTransitaire) {
@@ -67,6 +75,9 @@ export default async function MessagesPage() {
                 </div>
                 <p className="text-xs text-slate-500">{req.origin} → {req.destination}</p>
               </div>
+              {!isTransitaire && req.quotes && (
+                <QuoteList quotes={req.quotes as any} quoteRequestId={req.id} />
+              )}
               
               <div className="flex-1">
                 <Chat quoteRequestId={req.id} />

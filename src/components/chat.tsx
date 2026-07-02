@@ -44,7 +44,7 @@ export function Chat({ quoteRequestId }: { quoteRequestId: string }) {
         .eq('quote_request_id', quoteRequestId)
         .order('created_at', { ascending: true })
       
-      if (data) setMessages(data)
+      if (data) setMessages(data as any)
     }
 
     fetchUserAndMessages()
@@ -70,7 +70,7 @@ export function Chat({ quoteRequestId }: { quoteRequestId: string }) {
           content: payload.new.content,
           created_at: payload.new.created_at,
           sender_id: payload.new.sender_id,
-          profiles: profileData
+          profiles: profileData as any
         }
 
         setMessages(prev => [...prev, newMsg])
