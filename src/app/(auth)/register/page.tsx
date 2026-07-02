@@ -6,6 +6,7 @@ import { completeOnboarding } from "@/app/actions/auth"
 import { Compass, Users, Truck, UserCheck, RefreshCw, AlertCircle, Building2, UploadCloud, FileCheck } from "lucide-react"
 import { Badge } from "@/components/ui/badge"
 import { Logo } from "@/components/ui/logo"
+import Link from "next/link"
 
 type Role = "commercant" | "transitaire" | "transporteur" | "chauffeur"
 
@@ -297,6 +298,15 @@ function RegisterForm() {
               "Créer mon compte professionnel"
             )}
           </button>
+
+          <div className="text-center pt-4 border-t border-slate-100">
+            <p className="text-sm text-slate-500">
+              Vous avez déjà un compte ?{' '}
+              <Link href="/login" className="font-bold text-orange-600 hover:text-orange-700 transition-colors">
+                Se connecter
+              </Link>
+            </p>
+          </div>
         </form>
       </div>
     </div>
