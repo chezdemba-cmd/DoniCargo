@@ -48,6 +48,30 @@ export async function submitQuote(data: {
     return { success: true }
   }
 
+  // Simulation Envoi d'email au client
+  try {
+    const { sendEmail } = await import('@/lib/email')
+    
+    // Fetch client email via quote_request
+    const { data: request } = await supabase
+      .from('quote_requests')
+      .select('client_id, profiles!quote_requests_client_id_fkey(email)')
+      .eq('id', data.quoteRequestId)
+      .single()
+
+    const clientEmail = (request?.profiles as any)?.email
+
+    if (clientEmail) {
+      await sendEmail({
+        to: clientEmail,
+        subject: "🔔 Nouveau devis reçu sur DoniCargo !",
+        text: `Bonjour,\n\nVous avez reçu un nouveau devis d'un montant de ${data.amountFCFA} FCFA pour votre demande (Réf: ${data.quoteRequestId.substring(0,8)}).\nConnectez-vous à votre espace DoniCargo pour le consulter et l'accepter.\n\nL'équipe DoniCargo`
+      })
+    }
+  } catch (err) {
+    console.error("Failed to send email notification", err)
+  }
+
   return { success: true }
 }
 

@@ -63,7 +63,7 @@ export async function acceptQuoteAction(quoteId: string, quoteRequestId: string)
 
   // the shipments table might have different columns. Based on getShipments: 
   // title, origin, destination, status, container_id, escrow_amount, client_id, transitaire_id
-  const { error: createShipmentError } = await supabase
+  const { data: newShipment, error: createShipmentError } = await supabase
     .from('shipments')
     .insert([{
       client_id: userId,
@@ -88,6 +88,28 @@ export async function acceptQuoteAction(quoteId: string, quoteRequestId: string)
 
   revalidatePath('/dashboard/messages')
   revalidatePath('/dashboard/shipments')
+
+  // Simulation Envoi d'email au transitaire
+  try {
+    const { sendEmail } = await import('@/lib/email')
+    
+    // Fetch transitaire email
+    const { data: transitaireProfile } = await supabase
+      .from('profiles')
+      .select('email, full_name')
+      .eq('id', quoteData.transitaire_id)
+      .single()
+
+    if (transitaireProfile?.email) {
+      await sendEmail({
+        to: transitaireProfile.email,
+        subject: "🎉 Félicitations, votre devis a été accepté sur DoniCargo !",
+        text: `Bonjour ${transitaireProfile.full_name || 'Partenaire'},\n\nExcellente nouvelle ! Le marchand a accepté votre devis.\nLes fonds vont être placés sous séquestre. Vous pouvez dès à présent préparer l'enlèvement et mettre à jour le statut du dossier depuis votre Espace Pro.\n\nL'équipe DoniCargo`
+      })
+    }
+  } catch (err) {
+    console.error("Failed to send email notification", err)
+  }
 
   return { success: true }
 }

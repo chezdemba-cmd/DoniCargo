@@ -3,6 +3,7 @@
 import { useState } from "react"
 import { Calculator, Sparkles, ArrowRight, FileText, AlertCircle, TrendingUp, Info } from "lucide-react"
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
+import { motion } from "framer-motion"
 
 const CATEGORIES = [
   { id: "cat0", label: "0 - Biens sociaux essentiels (Ex: Médicaments, Livres)", rate: 0.00 },
@@ -40,7 +41,12 @@ export default function CalculatorClient() {
   const totalCost = cif + totalTaxes
 
   return (
-    <div className="space-y-8 max-w-6xl mx-auto">
+    <motion.div 
+      initial={{ opacity: 0, y: 20 }}
+      animate={{ opacity: 1, y: 0 }}
+      transition={{ duration: 0.5 }}
+      className="space-y-8 max-w-6xl mx-auto"
+    >
       {/* Header */}
       <div className="bg-gradient-to-r from-slate-900 to-slate-800 rounded-3xl p-8 text-white relative overflow-hidden shadow-xl">
         <div className="relative z-10 max-w-2xl">
@@ -227,7 +233,10 @@ export default function CalculatorClient() {
                   </div>
                   
                   <div className="pt-4">
-                     <button className="w-full bg-slate-900 hover:bg-slate-800 text-white py-3 rounded-xl text-sm font-bold shadow-md transition-all flex items-center justify-center gap-2">
+                     <button 
+                       onClick={() => window.location.href = '/dashboard/shipments/new'}
+                       className="w-full bg-slate-900 hover:bg-slate-800 text-white py-3 rounded-xl text-sm font-bold shadow-md transition-all flex items-center justify-center gap-2"
+                     >
                        <FileText className="w-4 h-4" />
                        Créer une demande de cotation avec ce calcul
                      </button>
@@ -240,7 +249,7 @@ export default function CalculatorClient() {
         </div>
 
       </div>
-    </div>
+    </motion.div>
   )
 }
 

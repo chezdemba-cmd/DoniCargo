@@ -2,6 +2,7 @@
 
 import { useState } from "react"
 import { Briefcase, FileText, CheckCircle, Clock, Shield, AlertCircle, X, Send } from "lucide-react"
+import { motion } from "framer-motion"
 import { Card, CardContent } from "@/components/ui/card"
 import { Badge } from "@/components/ui/badge"
 import { submitQuote } from "@/app/actions/submit_quote"
@@ -123,7 +124,12 @@ export default function ProClient({ initialQuotes, initialDossiers, isVerified =
   }
 
   return (
-    <div className="space-y-8 relative">
+    <motion.div 
+      initial={{ opacity: 0, y: 10 }}
+      animate={{ opacity: 1, y: 0 }}
+      transition={{ duration: 0.4 }}
+      className="space-y-8 relative"
+    >
       {/* Page Header */}
       <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4 border-b border-slate-200 pb-5">
         <div>
@@ -505,7 +511,6 @@ export default function ProClient({ initialQuotes, initialDossiers, isVerified =
         </div>
       )}
 
-    </div>
+    </motion.div>
   )
 }
-

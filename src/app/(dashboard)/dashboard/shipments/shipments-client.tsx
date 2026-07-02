@@ -4,6 +4,7 @@ import { useState } from "react"
 import Link from "next/link"
 import { Package, MessageSquare, Send } from "lucide-react"
 import { Card, CardContent } from "@/components/ui/card"
+import { motion } from "framer-motion"
 import { Badge } from "@/components/ui/badge"
 import { Shipment, Quote } from "@/services/shipments"
 import { TrackingMap } from "@/components/ui/tracking-map"
@@ -20,7 +21,12 @@ export default function ShipmentsClient({ initialData }: { initialData: Shipment
   const currentStepIndex = selectedShipment ? steps.indexOf(selectedShipment.status) : -1
 
   return (
-    <div className="space-y-8">
+    <motion.div 
+      initial={{ opacity: 0, y: 10 }}
+      animate={{ opacity: 1, y: 0 }}
+      transition={{ duration: 0.4 }}
+      className="space-y-8"
+    >
       {/* Page Header */}
       <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4 border-b border-slate-200 pb-5">
         <div>
@@ -196,41 +202,22 @@ export default function ShipmentsClient({ initialData }: { initialData: Shipment
                     </div>
                   </CardContent>
 
-                  {/* Messagerie Interne (Chat) */}
+                  {/* Redirection vers la vraie messagerie */}
                   <CardContent className="p-6 border-t border-slate-100 bg-slate-50/30">
-                    <h4 className="text-xs text-slate-400 font-semibold uppercase tracking-wider mb-4 flex items-center gap-2">
-                      <MessageSquare className="w-4 h-4" />
-                      Messagerie avec le transitaire
-                    </h4>
-                    
-                    <div className="bg-white border border-slate-200 rounded-xl overflow-hidden flex flex-col h-[300px]">
-                      {/* Chat Messages */}
-                      <div className="flex-1 p-4 overflow-y-auto space-y-4">
-                        <div className="flex flex-col gap-1 items-end">
-                          <div className="bg-orange-600 text-white p-3 rounded-2xl rounded-tr-sm text-sm max-w-[80%]">
-                            Bonjour, j&apos;ai accepté votre devis. Quand pensez-vous pouvoir enlever la marchandise ?
-                          </div>
-                          <span className="text-[10px] text-slate-400">10:45</span>
-                        </div>
-                        <div className="flex flex-col gap-1 items-start">
-                          <div className="bg-slate-100 text-slate-800 p-3 rounded-2xl rounded-tl-sm text-sm max-w-[80%]">
-                            Bonjour ! Merci pour votre confiance. L&apos;enlèvement est prévu demain matin. Nous attendons juste la confirmation du paiement Escrow.
-                          </div>
-                          <span className="text-[10px] text-slate-400">11:02</span>
-                        </div>
+                    <div className="flex items-center justify-between">
+                      <div>
+                        <h4 className="text-sm font-bold text-slate-800 mb-1 flex items-center gap-2">
+                          <MessageSquare className="w-4 h-4 text-orange-600" />
+                          Contacter votre transitaire
+                        </h4>
+                        <p className="text-xs text-slate-500">Posez vos questions ou envoyez des instructions via la messagerie sécurisée.</p>
                       </div>
-                      
-                      {/* Chat Input */}
-                      <div className="p-3 bg-white border-t border-slate-100 flex gap-2">
-                        <input 
-                          type="text" 
-                          placeholder="Écrivez votre message..." 
-                          className="flex-1 bg-slate-50 border border-slate-200 rounded-lg px-4 py-2 text-sm outline-none focus:border-orange-500"
-                        />
-                        <button className="bg-slate-900 hover:bg-slate-800 text-white p-2 rounded-lg transition-colors">
-                          <Send className="w-4 h-4" />
-                        </button>
-                      </div>
+                      <button 
+                        onClick={() => window.location.href = '/dashboard/messages'}
+                        className="bg-slate-900 hover:bg-slate-800 text-white px-4 py-2 rounded-lg text-sm font-bold transition-colors"
+                      >
+                        Ouvrir le Chat
+                      </button>
                     </div>
                   </CardContent>
               </Card>
@@ -258,7 +245,6 @@ export default function ShipmentsClient({ initialData }: { initialData: Shipment
           </div>
         </div>
       )}
-    </div>
+    </motion.div>
   )
 }
-
