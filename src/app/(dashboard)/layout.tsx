@@ -3,7 +3,7 @@
 import { ReactNode, useState, useEffect } from "react"
 import Link from "next/link"
 import { usePathname, useRouter } from "next/navigation"
-import { Package, Truck, LayoutDashboard, FileText, Settings, LogOut, Bell, Briefcase, Menu, X, Calculator, ChevronDown, MessageSquare } from "lucide-react"
+import { Package, Truck, LayoutDashboard, FileText, Settings, LogOut, Bell, Briefcase, Menu, X, Calculator, ChevronDown, MessageSquare, Shield } from "lucide-react"
 import { Logo } from "@/components/ui/logo"
 import { createClient } from "@/lib/supabase/client"
 
@@ -12,6 +12,7 @@ export default function DashboardLayout({ children }: { children: ReactNode }) {
   const [isNotificationsOpen, setIsNotificationsOpen] = useState(false)
   const [isDemoRoleOpen, setIsDemoRoleOpen] = useState(false)
   const [realtimeCount, setRealtimeCount] = useState(2) // Initial mockup count
+  const [userRole, setUserRole] = useState<string | null>(null)
   const pathname = usePathname()
   const router = useRouter()
   const supabase = createClient()
@@ -26,6 +27,15 @@ export default function DashboardLayout({ children }: { children: ReactNode }) {
       })
       .subscribe()
       
+    const checkRole = async () => {
+      const { data: { user } } = await supabase.auth.getUser()
+      if (user) {
+        const { data } = await supabase.from('profiles').select('role').eq('id', user.id).single()
+        if (data) setUserRole(data.role)
+      }
+    }
+    checkRole()
+
     return () => { supabase.removeChannel(channel) }
   }, [supabase])
 
@@ -46,6 +56,10 @@ export default function DashboardLayout({ children }: { children: ReactNode }) {
     { href: "/dashboard/pro", icon: Briefcase, label: "Espace Pro (Transitaire)" },
     { href: "/dashboard/documents", icon: FileText, label: "Coffre-fort" },
   ]
+
+  if (userRole === 'admin') {
+    navLinks.push({ href: "/dashboard/admin", icon: Shield, label: "Super Admin" })
+  }
 
   return (
     <div className="min-h-screen bg-slate-50 flex">

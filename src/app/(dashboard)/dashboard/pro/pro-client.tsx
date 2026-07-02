@@ -275,7 +275,9 @@ export default function ProClient({ initialQuotes, initialDossiers }: { initialQ
                 e.preventDefault();
                 setIsSubmitting(true);
                 const { updateShipmentStatus } = await import('@/app/actions/update_shipment_status');
-                await updateShipmentStatus(selectedDossier?.id, newStatus);
+                if (selectedDossier?.id) {
+                  await updateShipmentStatus(selectedDossier.id, newStatus);
+                }
                 setIsSubmitting(false);
                 setIsStatusModalOpen(false);
                 alert('Statut mis à jour ! Le client a été notifié.');
