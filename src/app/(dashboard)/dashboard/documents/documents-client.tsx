@@ -14,7 +14,19 @@ function formatBytes(bytes: number) {
   return parseFloat((bytes / Math.pow(k, i)).toFixed(2)) + ' ' + sizes[i]
 }
 
-export default function DocumentsClient({ initialDocuments }: { initialDocuments: any[] }) {
+export interface DocumentItem {
+  id: string;
+  name: string;
+  type?: string;
+  size?: string;
+  size_bytes?: number;
+  date?: string;
+  status?: string;
+  relatedTo?: string;
+  url?: string;
+}
+
+export default function DocumentsClient({ initialDocuments }: { initialDocuments: DocumentItem[] }) {
   const [isDragging, setIsDragging] = useState(false)
   const [isUploading, startUpload] = useTransition()
   const [uploadError, setUploadError] = useState<string | null>(null)

@@ -2,10 +2,10 @@
 
 import { useState } from "react"
 import Link from "next/link"
-import { Package, Shield, Truck, MapPin, BadgeCheck, AlertCircle, MessageSquare, Send } from "lucide-react"
-import { Card, CardContent, CardHeader, CardTitle, CardDescription } from "@/components/ui/card"
+import { Package, MessageSquare, Send } from "lucide-react"
+import { Card, CardContent } from "@/components/ui/card"
 import { Badge } from "@/components/ui/badge"
-import { Shipment } from "@/services/shipments"
+import { Shipment, Quote } from "@/services/shipments"
 import { TrackingMap } from "@/components/ui/tracking-map"
 
 export default function ShipmentsClient({ initialData }: { initialData: Shipment[] }) {
@@ -129,7 +129,7 @@ export default function ShipmentsClient({ initialData }: { initialData: Shipment
                     <CardContent className="p-6 border-b border-slate-100 bg-slate-50/50">
                       <h4 className="text-xs text-slate-400 font-semibold uppercase tracking-wider mb-4">Devis Reçus</h4>
                       <div className="space-y-3">
-                        {selectedShipment.quotes.map((quote: any) => (
+                        {selectedShipment.quotes.map((quote: Quote) => (
                           <div key={quote.id} className="flex flex-col sm:flex-row justify-between items-start sm:items-center p-4 bg-white border border-slate-200 rounded-xl hover:border-orange-200 transition-colors shadow-sm">
                             <div className="mb-3 sm:mb-0">
                               <h5 className="font-bold text-slate-800 text-sm">

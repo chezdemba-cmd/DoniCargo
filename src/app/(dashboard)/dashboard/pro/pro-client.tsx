@@ -1,17 +1,37 @@
 "use client"
 
 import { useState } from "react"
-import { Briefcase, FileText, CheckCircle, Clock, Truck, Shield, AlertCircle, X, Send } from "lucide-react"
+import { Briefcase, FileText, CheckCircle, Clock, Shield, AlertCircle, X, Send } from "lucide-react"
 import { Card, CardContent } from "@/components/ui/card"
 import { Badge } from "@/components/ui/badge"
 import { submitQuote } from "@/app/actions/submit_quote"
 
-export default function ProClient({ initialQuotes, initialDossiers }: { initialQuotes: any[], initialDossiers: any[] }) {
+export interface QuoteRequest {
+  id: string;
+  quote_request_id?: string;
+  shipment_id?: string;
+  client?: string;
+  cargo?: string;
+  route?: string;
+  date?: string;
+  status?: string;
+}
+
+export interface Dossier {
+  id: string;
+  client?: string;
+  route?: string;
+  status?: string;
+  nextAction?: string;
+  escrow?: string;
+}
+
+export default function ProClient({ initialQuotes, initialDossiers }: { initialQuotes: QuoteRequest[], initialDossiers: Dossier[] }) {
   const [activeTab, setActiveTab] = useState<"devis" | "dossiers">("devis")
   
   // Modal State
   const [isModalOpen, setIsModalOpen] = useState(false)
-  const [selectedQuote, setSelectedQuote] = useState<any>(null)
+  const [selectedQuote, setSelectedQuote] = useState<QuoteRequest | null>(null)
   const [proposedAmount, setProposedAmount] = useState("")
   const [message, setMessage] = useState("")
   const [isSubmitting, setIsSubmitting] = useState(false)
@@ -19,7 +39,7 @@ export default function ProClient({ initialQuotes, initialDossiers }: { initialQ
 
   // Status Modal State
   const [isStatusModalOpen, setIsStatusModalOpen] = useState(false)
-  const [selectedDossier, setSelectedDossier] = useState<any>(null)
+  const [selectedDossier, setSelectedDossier] = useState<Dossier | null>(null)
   const [newStatus, setNewStatus] = useState("douane")
 
   // Utilisation des données réelles ou du mock s'il n'y a rien
@@ -57,7 +77,7 @@ export default function ProClient({ initialQuotes, initialDossiers }: { initialQ
     }
   ]
 
-  const handleOpenModal = (quote: any) => {
+  const handleOpenModal = (quote: QuoteRequest) => {
     setSelectedQuote(quote)
     setIsSuccess(false)
     setProposedAmount("")

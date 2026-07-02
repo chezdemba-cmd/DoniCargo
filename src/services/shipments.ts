@@ -1,5 +1,12 @@
 import { createClient } from "@/lib/supabase/server"
 
+export interface Quote {
+  id: string
+  amount_cents: number
+  status: string
+  profiles?: { full_name: string } | null
+}
+
 export interface Shipment {
   id: string
   client_id?: string
@@ -11,11 +18,11 @@ export interface Shipment {
   container_id?: string
   estimated_arrival?: string
   escrow_amount?: number
-  quotes?: Record<string, unknown>[]
+  quotes?: Quote[]
 }
 
 // Mock Fallback Data
-const MOCK_SHIPMENTS: any[] = [
+const MOCK_SHIPMENTS: Shipment[] = [
   {
     id: "HLX-9029",
     client_id: "mock",
@@ -55,7 +62,7 @@ const MOCK_SHIPMENTS: any[] = [
   }
 ]
 
-export async function getShipments(): Promise<(Shipment & { quotes?: any[] })[]> {
+export async function getShipments(): Promise<Shipment[]> {
   if (!process.env.NEXT_PUBLIC_SUPABASE_URL) {
     return MOCK_SHIPMENTS
   }
