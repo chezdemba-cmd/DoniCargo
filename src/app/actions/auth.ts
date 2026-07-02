@@ -75,7 +75,13 @@ export async function completeOnboarding(data: {
     }
   ])
 
-  if (profileError) return { error: "Erreur création profil: " + profileError.message }
+  if (profileError) {
+    if (profileError.message.includes("profiles_phone_key")) {
+      // Nettoyage optionnel ici si on voulait supprimer l'utilisateur auth créé
+      return { error: "Ce numéro de téléphone est déjà utilisé par un autre compte." }
+    }
+    return { error: "Erreur création profil: " + profileError.message }
+  }
 
   // 3. Création de l'entreprise (si transitaire ou transporteur)
   if (['transitaire', 'transporteur'].includes(data.role) && data.companyName) {
