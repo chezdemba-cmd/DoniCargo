@@ -1,6 +1,6 @@
 "use client"
 
-import { ReactNode, useState } from "react"
+import { ReactNode, useState, useEffect } from "react"
 import Link from "next/link"
 import { usePathname, useRouter } from "next/navigation"
 import { Package, Truck, LayoutDashboard, FileText, Settings, LogOut, Bell, Briefcase, Menu, X, Calculator, ChevronDown, MessageSquare } from "lucide-react"
@@ -11,9 +11,23 @@ export default function DashboardLayout({ children }: { children: ReactNode }) {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false)
   const [isNotificationsOpen, setIsNotificationsOpen] = useState(false)
   const [isDemoRoleOpen, setIsDemoRoleOpen] = useState(false)
+  const [realtimeCount, setRealtimeCount] = useState(2) // Initial mockup count
   const pathname = usePathname()
   const router = useRouter()
   const supabase = createClient()
+
+  useEffect(() => {
+    const channel = supabase.channel('realtime_notifications')
+      .on('postgres_changes', { event: 'INSERT', schema: 'public', table: 'quotes' }, payload => {
+        setRealtimeCount(c => c + 1)
+      })
+      .on('postgres_changes', { event: 'UPDATE', schema: 'public', table: 'shipments' }, payload => {
+        setRealtimeCount(c => c + 1)
+      })
+      .subscribe()
+      
+    return () => { supabase.removeChannel(channel) }
+  }, [supabase])
 
   const handleLogout = async () => {
     await supabase.auth.signOut()
@@ -146,7 +160,11 @@ export default function DashboardLayout({ children }: { children: ReactNode }) {
                 className="relative p-2 text-slate-400 hover:text-slate-600 transition-colors rounded-full hover:bg-slate-100"
               >
                 <Bell className="w-6 h-6" />
-                <span className="absolute top-2 right-2 w-2 h-2 bg-red-500 rounded-full animate-pulse"></span>
+                {realtimeCount > 0 && (
+                  <span className="absolute top-1 right-1 w-4 h-4 bg-red-500 rounded-full flex items-center justify-center text-[10px] text-white font-bold animate-pulse shadow-sm">
+                    {realtimeCount}
+                  </span>
+                )}
               </button>
               
               {isNotificationsOpen && (
@@ -155,7 +173,7 @@ export default function DashboardLayout({ children }: { children: ReactNode }) {
                   <div className="absolute right-0 mt-2 w-80 bg-white rounded-xl shadow-2xl border border-slate-100 overflow-hidden z-50 animate-in fade-in slide-in-from-top-2 duration-200">
                     <div className="p-4 border-b border-slate-100 bg-slate-50 flex justify-between items-center">
                       <h3 className="font-bold text-slate-800">Notifications</h3>
-                      <span className="text-xs bg-orange-100 text-orange-600 px-2 py-1 rounded-full font-bold">2 Nouvelles</span>
+                      <span className="text-xs bg-orange-100 text-orange-600 px-2 py-1 rounded-full font-bold">{realtimeCount} Nouvelles</span>
                     </div>
                     <div className="max-h-96 overflow-y-auto">
                       <div className="p-4 border-b border-slate-50 hover:bg-slate-50 transition-colors cursor-pointer bg-orange-50/30">

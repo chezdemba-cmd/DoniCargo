@@ -23,6 +23,7 @@ export const metadata: Metadata = {
     statusBarStyle: "default",
     title: "DoniCargo",
   },
+  manifest: "/manifest.webmanifest",
 };
 
 export const viewport: Viewport = {

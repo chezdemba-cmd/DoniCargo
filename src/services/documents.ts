@@ -58,8 +58,12 @@ export async function getDocuments(shipmentId?: string): Promise<CargoDocument[]
     }
     const { data, error } = await query
 
-    if (error || !data || data.length === 0) {
-      return MOCK_DOCUMENTS
+    if (error) {
+      return []
+    }
+    
+    if (!data || data.length === 0) {
+      return []
     }
 
     return data.map(doc => {

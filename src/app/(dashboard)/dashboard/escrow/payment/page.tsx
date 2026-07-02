@@ -4,6 +4,7 @@ import { useState, useEffect, Suspense } from "react"
 import { useSearchParams, useRouter } from "next/navigation"
 import { Shield, Smartphone, CreditCard, Lock, CheckCircle2, Loader2, ArrowLeft } from "lucide-react"
 import { Card, CardContent, CardHeader, CardTitle, CardDescription } from "@/components/ui/card"
+import { processMockPayment } from "@/app/actions/payment"
 
 function EscrowPaymentContent() {
   const searchParams = useSearchParams()
@@ -15,18 +16,21 @@ function EscrowPaymentContent() {
   const [isSuccess, setIsSuccess] = useState(false)
 
   const handlePayment = async () => {
+    if (!shipmentId) return;
     setIsProcessing(true)
     
-    // Simuler le délai de l'API de paiement
-    setTimeout(() => {
-      setIsProcessing(false)
+    // Appel du Server Action (Simule Stripe/Paystack)
+    const result = await processMockPayment(shipmentId, 450000)
+    
+    setIsProcessing(false)
+    if (result?.success) {
       setIsSuccess(true)
-      
-      // Simuler le retour vers le dashboard après succès
       setTimeout(() => {
         router.push('/dashboard/shipments')
       }, 3000)
-    }, 2500)
+    } else {
+      alert("Erreur: " + result?.error)
+    }
   }
 
   if (isSuccess) {

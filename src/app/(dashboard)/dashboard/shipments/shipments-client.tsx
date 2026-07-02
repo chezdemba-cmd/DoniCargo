@@ -88,6 +88,16 @@ export default function ShipmentsClient({ initialData }: { initialData: Shipment
                 <CardContent className="p-6 border-b border-slate-100">
                   <h4 className="text-xs text-slate-400 font-semibold uppercase tracking-wider mb-6">Progression de l&apos;acheminement</h4>
                   
+                  <div className="mb-8">
+                    <TrackingMap 
+                      origin={selectedShipment.origin || "Origine"} 
+                      destination={selectedShipment.destination || "Destination"} 
+                      progress={Math.max(0, currentStepIndex * 25)} 
+                      estimatedTime={selectedShipment.estimated_arrival ? new Date(selectedShipment.estimated_arrival).toLocaleDateString() : "Non estimé"}
+                      temperature={selectedShipment.status === 'navire' ? "4°C (Froid)" : "Standard"}
+                    />
+                  </div>
+
                   <div className="relative flex items-center justify-between">
                     <div className="absolute left-0 right-0 top-1/2 -translate-y-1/2 h-1 bg-slate-100 z-0"></div>
                     <div 
