@@ -29,7 +29,7 @@ export default async function TransitaireDashboardPage() {
   const formattedQuotes = (requests || []).map((req: any) => ({
     id: req.id.substring(0, 8).toUpperCase(),
     quote_request_id: req.id,
-    shipment_id: null,
+    shipment_id: undefined,
     client: req.profiles?.full_name || "Client Anonyme",
     cargo: req.title,
     route: `${req.origin} → ${req.destination}`,
