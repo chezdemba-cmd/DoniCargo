@@ -1,11 +1,11 @@
 "use client"
 
-import { useState, useEffect } from "react"
+import { useState, useEffect, Suspense } from "react"
 import { useSearchParams, useRouter } from "next/navigation"
 import { Shield, Smartphone, CreditCard, Lock, CheckCircle2, Loader2, ArrowLeft } from "lucide-react"
 import { Card, CardContent, CardHeader, CardTitle, CardDescription } from "@/components/ui/card"
 
-export default function EscrowPaymentPage() {
+function EscrowPaymentContent() {
   const searchParams = useSearchParams()
   const router = useRouter()
   const shipmentId = searchParams.get('shipmentId')
@@ -146,6 +146,18 @@ export default function EscrowPaymentPage() {
         </CardContent>
       </Card>
     </div>
+  )
+}
+
+export default function EscrowPaymentPage() {
+  return (
+    <Suspense fallback={
+      <div className="flex justify-center items-center h-[50vh]">
+        <Loader2 className="w-8 h-8 animate-spin text-orange-500" />
+      </div>
+    }>
+      <EscrowPaymentContent />
+    </Suspense>
   )
 }
 

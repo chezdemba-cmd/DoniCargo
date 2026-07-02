@@ -171,8 +171,8 @@ export default function ShipmentsClient({ initialData }: { initialData: Shipment
                     <TrackingMap 
                       origin={selectedShipment.origin} 
                       destination={selectedShipment.destination} 
-                      progress={selectedShipment.status === "En cours de transport" ? 65 : (selectedShipment.status === "Livré" ? 100 : 25)} 
-                      temperature={selectedShipment.origin.includes("Abidjan") ? "18°C (Réfrigéré)" : "N/A"}
+                      progress={["navire", "port", "douane", "route"].includes(selectedShipment.status) ? 65 : selectedShipment.status === "livre" ? 100 : 25}
+                      temperature={selectedShipment.origin.includes("Abidjan") ? "18°C (Régulé)" : undefined}
                     />
                   </CardContent>
 
