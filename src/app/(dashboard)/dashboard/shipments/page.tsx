@@ -10,3 +10,4 @@ export default async function ShipmentsPage() {
   const data = await getShipments()
   return <ShipmentsClient initialData={data} />
 }
+

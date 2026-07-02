@@ -13,3 +13,4 @@ export default async function TransitairesPage() {
   // Pass data to the client component
   return <TransitairesClient initialData={data} />
 }
+

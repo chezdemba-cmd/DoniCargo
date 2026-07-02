@@ -57,8 +57,8 @@ export default function RequestQuoteForm({ transitaireId, transitaireName }: Req
 
   if (success) {
     return (
-      <div className="p-8 text-center bg-emerald-50/50 border border-emerald-100 rounded-2xl space-y-4">
-        <div className="w-12 h-12 rounded-full bg-emerald-100 text-emerald-600 flex items-center justify-center mx-auto">
+      <div className="p-8 text-center bg-orange-50/50 border border-orange-100 rounded-2xl space-y-4">
+        <div className="w-12 h-12 rounded-full bg-orange-100 text-orange-600 flex items-center justify-center mx-auto">
           <CheckCircle className="w-6 h-6" />
         </div>
         <h4 className="font-bold text-slate-800">Demande de devis soumise !</h4>
@@ -89,7 +89,7 @@ export default function RequestQuoteForm({ transitaireId, transitaireName }: Req
             onChange={(e) => setOrigin(e.target.value)}
             required
             disabled={isPending}
-            className="block w-full border border-slate-200 rounded-lg py-3 px-4 text-sm text-slate-800 focus:ring-2 focus:ring-emerald-500/20 focus:border-emerald-500 outline-none transition-all"
+            className="block w-full border border-slate-200 rounded-lg py-3 px-4 text-sm text-slate-800 focus:ring-2 focus:ring-orange-500/20 focus:border-orange-500 outline-none transition-all"
           />
         </div>
         <div>
@@ -101,7 +101,7 @@ export default function RequestQuoteForm({ transitaireId, transitaireName }: Req
             onChange={(e) => setDestination(e.target.value)}
             required
             disabled={isPending}
-            className="block w-full border border-slate-200 rounded-lg py-3 px-4 text-sm text-slate-800 focus:ring-2 focus:ring-emerald-500/20 focus:border-emerald-500 outline-none transition-all"
+            className="block w-full border border-slate-200 rounded-lg py-3 px-4 text-sm text-slate-800 focus:ring-2 focus:ring-orange-500/20 focus:border-orange-500 outline-none transition-all"
           />
         </div>
       </div>
@@ -115,7 +115,7 @@ export default function RequestQuoteForm({ transitaireId, transitaireName }: Req
             value={cargoType}
             onChange={(e) => setCargoType(e.target.value)}
             disabled={isPending}
-            className="block w-full border border-slate-200 bg-white rounded-lg py-3 px-4 text-sm text-slate-800 focus:ring-2 focus:ring-emerald-500/20 focus:border-emerald-500 outline-none transition-all"
+            className="block w-full border border-slate-200 bg-white rounded-lg py-3 px-4 text-sm text-slate-800 focus:ring-2 focus:ring-orange-500/20 focus:border-orange-500 outline-none transition-all"
           >
             <option value="Général">Général (Dry)</option>
             <option value="Frigo">Frigorifique</option>
@@ -133,7 +133,7 @@ export default function RequestQuoteForm({ transitaireId, transitaireName }: Req
             onChange={(e) => setWeight(e.target.value)}
             required
             disabled={isPending}
-            className="block w-full border border-slate-200 rounded-lg py-3 px-4 text-sm text-slate-800 focus:ring-2 focus:ring-emerald-500/20 focus:border-emerald-500 outline-none transition-all"
+            className="block w-full border border-slate-200 rounded-lg py-3 px-4 text-sm text-slate-800 focus:ring-2 focus:ring-orange-500/20 focus:border-orange-500 outline-none transition-all"
           />
         </div>
         <div>
@@ -145,7 +145,7 @@ export default function RequestQuoteForm({ transitaireId, transitaireName }: Req
             value={volume}
             onChange={(e) => setVolume(e.target.value)}
             disabled={isPending}
-            className="block w-full border border-slate-200 rounded-lg py-3 px-4 text-sm text-slate-800 focus:ring-2 focus:ring-emerald-500/20 focus:border-emerald-500 outline-none transition-all"
+            className="block w-full border border-slate-200 rounded-lg py-3 px-4 text-sm text-slate-800 focus:ring-2 focus:ring-orange-500/20 focus:border-orange-500 outline-none transition-all"
           />
         </div>
       </div>
@@ -161,7 +161,7 @@ export default function RequestQuoteForm({ transitaireId, transitaireName }: Req
           onChange={(e) => setDescription(e.target.value)}
           required
           disabled={isPending}
-          className="block w-full border border-slate-200 rounded-lg py-3 px-4 text-sm text-slate-800 focus:ring-2 focus:ring-emerald-500/20 focus:border-emerald-500 outline-none transition-all"
+          className="block w-full border border-slate-200 rounded-lg py-3 px-4 text-sm text-slate-800 focus:ring-2 focus:ring-orange-500/20 focus:border-orange-500 outline-none transition-all"
         />
       </div>
 
@@ -169,7 +169,7 @@ export default function RequestQuoteForm({ transitaireId, transitaireName }: Req
       <div className="border border-dashed border-slate-200 rounded-xl p-4 bg-slate-50/50">
         <label className="block text-xs font-semibold text-slate-500 mb-2">Facture d'achat fournisseur (Optionnel)</label>
         <div className="flex items-center gap-3">
-          <div className="p-3 bg-white border border-slate-200 rounded-lg text-slate-500 hover:text-emerald-600 hover:border-emerald-200 transition-all cursor-pointer flex items-center gap-2 text-xs font-semibold">
+          <div className="p-3 bg-white border border-slate-200 rounded-lg text-slate-500 hover:text-orange-600 hover:border-orange-200 transition-all cursor-pointer flex items-center gap-2 text-xs font-semibold">
             <Upload className="w-4 h-4" />
             Téléverser la facture
           </div>
@@ -180,7 +180,7 @@ export default function RequestQuoteForm({ transitaireId, transitaireName }: Req
       <button
         type="submit"
         disabled={isPending}
-        className="w-full bg-emerald-600 hover:bg-emerald-700 text-white font-semibold py-3.5 rounded-xl text-xs transition-all flex items-center justify-center gap-2 shadow-sm"
+        className="w-full bg-orange-600 hover:bg-orange-700 text-white font-semibold py-3.5 rounded-xl text-xs transition-all flex items-center justify-center gap-2 shadow-sm"
       >
         {isPending ? (
           <RefreshCw className="w-4 h-4 animate-spin" />
@@ -191,3 +191,4 @@ export default function RequestQuoteForm({ transitaireId, transitaireName }: Req
     </form>
   )
 }
+

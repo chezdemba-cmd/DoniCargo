@@ -63,10 +63,10 @@ export async function proxy(request: NextRequest) {
 
   const { data: { session } } = await supabase.auth.getSession()
 
-  // Protect dashboard routes
-  if (request.nextUrl.pathname.startsWith('/dashboard') && !session) {
-    return NextResponse.redirect(new URL('/login', request.url))
-  }
+  // Protect dashboard routes (Désactivé pour permettre l'accès libre sans connexion)
+  // if (request.nextUrl.pathname.startsWith('/dashboard') && !session) {
+  //   return NextResponse.redirect(new URL('/login', request.url))
+  // }
 
   return response
 }
@@ -76,3 +76,4 @@ export const config = {
     '/((?!_next/static|_next/image|favicon.ico|.*\\.(?:svg|png|jpg|jpeg|gif|webp)$).*)',
   ],
 }
+

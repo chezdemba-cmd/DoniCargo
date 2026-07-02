@@ -52,24 +52,36 @@ const MOCK_DOCUMENTS: CargoDocument[] = [
 export async function getDocuments(shipmentId?: string): Promise<CargoDocument[]> {
   try {
     const supabase = createClient()
-    const { data, error } = await supabase
-      .from('documents')
-      .select('*')
+    let query = supabase.from('documents').select('*').order('created_at', { ascending: false })
+    if (shipmentId) {
+      query = query.eq('shipment_id', shipmentId)
+    }
+    const { data, error } = await query
 
     if (error || !data || data.length === 0) {
       return MOCK_DOCUMENTS
     }
 
-    return data.map(doc => ({
-      id: doc.id,
-      name: doc.name,
-      type: doc.type,
-      size: "1.5 MB",
-      date: new Date(doc.created_at).toLocaleDateString(),
-      status: doc.is_verified_by_ai ? 'Verified' : 'Pending',
-      aiSummary: doc.ai_extracted_data ? JSON.stringify(doc.ai_extracted_data) : "Aucune analyse IA disponible."
-    }))
+    return data.map(doc => {
+      let sizeStr = "1.5 MB"
+      if (doc.size_bytes) {
+        const bytes = Number(doc.size_bytes)
+        if (bytes > 1024 * 1024) sizeStr = (bytes / (1024 * 1024)).toFixed(1) + " MB"
+        else sizeStr = Math.round(bytes / 1024) + " KB"
+      }
+
+      return {
+        id: doc.id,
+        name: doc.name,
+        type: doc.type,
+        size: sizeStr,
+        date: new Date(doc.created_at).toLocaleDateString('fr-FR', { day: 'numeric', month: 'short', year: 'numeric' }),
+        status: doc.is_verified_by_ai ? 'Verified' : 'Pending',
+        aiSummary: doc.ai_extracted_data ? JSON.stringify(doc.ai_extracted_data) : "Aucune analyse IA disponible."
+      }
+    })
   } catch {
     return MOCK_DOCUMENTS
   }
 }
+

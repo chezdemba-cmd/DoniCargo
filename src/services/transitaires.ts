@@ -62,7 +62,7 @@ export async function getTransitaires(): Promise<Transitaire[]> {
     const { data: dbCompanies, error } = await supabase
       .from('companies')
       .select('*, owner:owner_id(phone, full_name)')
-      .eq('type', 'transitaire')
+      .eq('company_type', 'transit')
 
     if (error || !dbCompanies || dbCompanies.length === 0) {
       return MOCK_TRANSITAIRES
@@ -71,14 +71,14 @@ export async function getTransitaires(): Promise<Transitaire[]> {
     return dbCompanies.map(c => ({
       id: c.id,
       name: c.name,
-      license: c.rccm ? `RCCM ${c.rccm}` : "Agrément officiel",
+      license: c.rccm ? `RCCM ${c.rccm}` : (c.agrement_douane || "Agrément officiel"),
       rating: Number(c.rating_score) || 5.0,
       reviews: c.reviews_count || 0,
       specialty: "Général / Tout type",
       destinations: "CI → Mali",
       transitTime: "10-15 jours",
       priceIndicator: "Tarif standard",
-      verified: c.rating_score >= 4.0,
+      verified: c.kyb_status === 'verifie' || c.rating_score >= 4.0,
       description: c.address || "Aucune description fournie."
     }))
   } catch {
@@ -102,17 +102,18 @@ export async function getTransitaireById(id: string): Promise<Transitaire | null
     return {
       id: company.id,
       name: company.name,
-      license: company.rccm ? `RCCM ${company.rccm}` : "Agrément officiel",
+      license: company.rccm ? `RCCM ${company.rccm}` : (company.agrement_douane || "Agrément officiel"),
       rating: Number(company.rating_score) || 5.0,
       reviews: company.reviews_count || 0,
       specialty: "Général / Tout type",
       destinations: "CI → Mali",
       transitTime: "10-15 jours",
       priceIndicator: "Tarif standard",
-      verified: company.rating_score >= 4.0,
+      verified: company.kyb_status === 'verifie' || company.rating_score >= 4.0,
       description: company.address || "Aucune description."
     }
   } catch {
     return MOCK_TRANSITAIRES.find(t => t.id === id) || null
   }
 }
+

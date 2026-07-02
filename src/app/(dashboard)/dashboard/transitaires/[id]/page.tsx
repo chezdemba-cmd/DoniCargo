@@ -17,7 +17,7 @@ export default async function TransitaireDetailPage({ params }: PageProps) {
     return (
       <div className="text-center py-12 space-y-4">
         <h3 className="text-lg font-bold text-slate-800">Transitaire introuvable</h3>
-        <Link href="/dashboard/transitaires" className="text-sm text-emerald-600 font-semibold hover:underline">
+        <Link href="/dashboard/transitaires" className="text-sm text-orange-600 font-semibold hover:underline">
           Retourner à la marketplace
         </Link>
       </div>
@@ -67,7 +67,7 @@ export default async function TransitaireDetailPage({ params }: PageProps) {
                     {transitaire.name.split(' ').map(n => n[0]).join('').substring(0, 2)}
                   </div>
                   {transitaire.verified && (
-                    <Badge className="bg-emerald-500/10 text-emerald-400 border border-emerald-500/20 hover:bg-emerald-500/20 text-[10px] px-2.5 py-1 font-semibold flex items-center gap-1">
+                    <Badge className="bg-orange-500/10 text-orange-400 border border-orange-500/20 hover:bg-orange-500/20 text-[10px] px-2.5 py-1 font-semibold flex items-center gap-1">
                       <CheckCircle className="w-3.5 h-3.5" />
                       Vérifié KYB
                     </Badge>
@@ -87,7 +87,7 @@ export default async function TransitaireDetailPage({ params }: PageProps) {
                   <span className="text-slate-400">({transitaire.reviews} avis vérifiés)</span>
                 </div>
               </div>
-              <div className="absolute right-0 bottom-0 w-80 h-80 bg-emerald-500/5 rounded-full blur-3xl -z-0 translate-x-20 translate-y-20"></div>
+              <div className="absolute right-0 bottom-0 w-80 h-80 bg-orange-500/5 rounded-full blur-3xl -z-0 translate-x-20 translate-y-20"></div>
             </div>
 
             {/* Description */}
@@ -111,7 +111,7 @@ export default async function TransitaireDetailPage({ params }: PageProps) {
                 </div>
                 <div className="space-y-1">
                   <span className="text-slate-400 font-medium">Délai indicatif :</span>
-                  <p className="font-bold text-emerald-600 text-sm">{transitaire.transitTime}</p>
+                  <p className="font-bold text-orange-600 text-sm">{transitaire.transitTime}</p>
                 </div>
               </div>
             </CardContent>
@@ -165,7 +165,7 @@ export default async function TransitaireDetailPage({ params }: PageProps) {
           {/* Security details card */}
           <Card className="border-slate-100 shadow-sm p-6 space-y-4">
             <div className="flex items-start gap-3">
-              <Shield className="w-6 h-6 text-emerald-600 shrink-0 mt-0.5" />
+              <Shield className="w-6 h-6 text-orange-600 shrink-0 mt-0.5" />
               <div>
                 <h5 className="font-bold text-slate-800 text-xs">Acompte Bloqué</h5>
                 <p className="text-[11px] text-slate-500 mt-1 leading-relaxed">

@@ -60,6 +60,7 @@ export async function completeOnboarding(data: {
   companyName?: string
   rccm?: string
   nif?: string
+  agrementDouane?: string
 }): Promise<{error?: string} | void> {
   
   if (!process.env.NEXT_PUBLIC_SUPABASE_URL) {
@@ -85,3 +86,4 @@ export async function completeOnboarding(data: {
     redirect("/dashboard")
   }
 }
+

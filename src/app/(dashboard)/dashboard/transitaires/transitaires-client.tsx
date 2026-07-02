@@ -44,9 +44,9 @@ export default function TransitairesClient({ initialData }: { initialData: Trans
             Comparez et collaborez avec des transitaires professionnels agréés douane (KYB validés).
           </p>
         </div>
-        <button className="bg-emerald-600 hover:bg-emerald-700 text-white px-4 py-2.5 rounded-xl text-sm font-semibold shadow-sm inline-flex items-center gap-2 transition-colors">
+        <Link href="/dashboard/transitaires/demande-devis" className="bg-orange-600 hover:bg-orange-700 text-white px-4 py-2.5 rounded-xl text-sm font-semibold shadow-sm inline-flex items-center gap-2 transition-colors">
           Demande de Devis Groupé
-        </button>
+        </Link>
       </div>
 
       {/* Filter and Search Bar */}
@@ -67,7 +67,7 @@ export default function TransitairesClient({ initialData }: { initialData: Trans
           <select 
             value={selectedAxis}
             onChange={(e) => setSelectedAxis(e.target.value)}
-            className="border border-slate-200 rounded-lg text-xs py-2 px-3 focus:ring-2 focus:ring-emerald-500 focus:border-transparent outline-none bg-white font-medium text-slate-700 flex-1 md:flex-initial"
+            className="border border-slate-200 rounded-lg text-xs py-2 px-3 focus:ring-2 focus:ring-orange-500 focus:border-transparent outline-none bg-white font-medium text-slate-700 flex-1 md:flex-initial"
             aria-label="Sélectionner l'axe"
           >
             <option value="all">Tous les axes</option>
@@ -78,7 +78,7 @@ export default function TransitairesClient({ initialData }: { initialData: Trans
           <select 
             value={selectedSpecialty}
             onChange={(e) => setSelectedSpecialty(e.target.value)}
-            className="border border-slate-200 rounded-lg text-xs py-2 px-3 focus:ring-2 focus:ring-emerald-500 focus:border-transparent outline-none bg-white font-medium text-slate-700 flex-1 md:flex-initial"
+            className="border border-slate-200 rounded-lg text-xs py-2 px-3 focus:ring-2 focus:ring-orange-500 focus:border-transparent outline-none bg-white font-medium text-slate-700 flex-1 md:flex-initial"
             aria-label="Sélectionner la spécialité"
           >
             <option value="all">Toutes spécialités</option>
@@ -107,7 +107,7 @@ export default function TransitairesClient({ initialData }: { initialData: Trans
                   {item.name.split(' ').map(n => n[0]).join('').substring(0, 2)}
                 </div>
                 {item.verified && (
-                  <Badge variant="outline" className="bg-emerald-50 text-emerald-700 border-emerald-100 hover:bg-emerald-50 text-[10px] px-2 py-0.5 font-semibold flex items-center gap-1">
+                  <Badge variant="outline" className="bg-orange-50 text-orange-700 border-orange-100 hover:bg-orange-50 text-[10px] px-2 py-0.5 font-semibold flex items-center gap-1">
                     <CheckCircle className="w-3 h-3" />
                     Vérifié KYB
                   </Badge>
@@ -135,7 +135,7 @@ export default function TransitairesClient({ initialData }: { initialData: Trans
                 </div>
                 <div className="flex justify-between">
                   <span className="text-slate-500">Délai estimé :</span>
-                  <span className="font-semibold text-emerald-600 text-right">{item.transitTime}</span>
+                  <span className="font-semibold text-orange-600 text-right">{item.transitTime}</span>
                 </div>
               </div>
             </div>
@@ -144,7 +144,7 @@ export default function TransitairesClient({ initialData }: { initialData: Trans
             <div className="mt-6 pt-4 border-t border-slate-100 flex gap-3">
               <Link 
                 href={`/dashboard/transitaires/${item.id}`}
-                className="flex-1 bg-emerald-600 hover:bg-emerald-700 text-white text-xs font-bold py-2.5 rounded-lg transition-colors flex items-center justify-center gap-1.5 shadow-sm"
+                className="flex-1 bg-orange-600 hover:bg-orange-700 text-white text-xs font-bold py-2.5 rounded-lg transition-colors flex items-center justify-center gap-1.5 shadow-sm"
               >
                 Voir Profil & Devis
                 <ArrowRight className="w-3.5 h-3.5" />
@@ -167,3 +167,4 @@ export default function TransitairesClient({ initialData }: { initialData: Trans
     </div>
   )
 }
+

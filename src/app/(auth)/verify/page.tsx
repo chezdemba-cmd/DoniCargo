@@ -35,12 +35,12 @@ function VerifyForm() {
     <div className="min-h-screen flex flex-col items-center justify-center bg-slate-50 p-4 font-sans">
       <div className="w-full max-w-md bg-white rounded-2xl shadow-xl overflow-hidden border border-slate-100">
         <div className="bg-slate-900 p-8 text-center">
-          <div className="inline-flex items-center justify-center w-16 h-16 rounded-full bg-emerald-500 mb-4 shadow-lg shadow-emerald-500/20">
+          <div className="inline-flex items-center justify-center w-16 h-16 rounded-full bg-orange-500 mb-4 shadow-lg shadow-orange-500/20">
             <Shield className="w-8 h-8 text-white animate-pulse" />
           </div>
           <h1 className="text-2xl font-bold text-white">Vérification SMS</h1>
           <p className="text-slate-400 mt-2 text-sm">Saisissez le code à 6 chiffres envoyé au</p>
-          <p className="text-emerald-400 font-semibold text-sm mt-1">{phone || "votre numéro"}</p>
+          <p className="text-orange-400 font-semibold text-sm mt-1">{phone || "votre numéro"}</p>
         </div>
         
         <div className="p-8">
@@ -56,7 +56,7 @@ function VerifyForm() {
                 disabled={isPending}
                 onChange={(e) => setOtp(e.target.value.replace(/\D/g, ""))}
                 placeholder="------"
-                className="block w-full border border-slate-300 rounded-lg py-3.5 px-4 text-slate-900 text-center tracking-[1em] text-xl font-bold focus:ring-emerald-500 focus:border-emerald-500 outline-none transition-all"
+                className="block w-full border border-slate-300 rounded-lg py-3.5 px-4 text-slate-900 text-center tracking-[1em] text-xl font-bold focus:ring-orange-500 focus:border-orange-500 outline-none transition-all"
               />
             </div>
 
@@ -68,7 +68,7 @@ function VerifyForm() {
             )}
 
             {isSimulated && (
-              <div className="p-3 bg-emerald-50 text-emerald-800 rounded-lg text-xs font-medium border border-emerald-100">
+              <div className="p-3 bg-orange-50 text-orange-800 rounded-lg text-xs font-medium border border-orange-100">
                 💡 <strong>Mode simulation activé :</strong> Utilisez le code de test <strong>123456</strong> pour poursuivre.
               </div>
             )}
@@ -76,7 +76,7 @@ function VerifyForm() {
             <button
               type="submit"
               disabled={isPending || otp.length !== 6}
-              className="w-full flex justify-center items-center gap-2 py-3 px-4 border border-transparent rounded-lg shadow-sm text-sm font-medium text-white bg-emerald-600 hover:bg-emerald-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-emerald-500 disabled:opacity-50 transition-all font-semibold"
+              className="w-full flex justify-center items-center gap-2 py-3 px-4 border border-transparent rounded-lg shadow-sm text-sm font-medium text-white bg-orange-600 hover:bg-orange-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-orange-500 disabled:opacity-50 transition-all font-semibold"
             >
               {isPending ? (
                 <RefreshCw className="w-4 h-4 animate-spin" />
@@ -92,7 +92,7 @@ function VerifyForm() {
               Vous n'avez pas reçu le code ?{' '}
               <button 
                 disabled={isPending}
-                className="font-medium text-emerald-600 hover:text-emerald-500 hover:underline"
+                className="font-medium text-orange-600 hover:text-orange-500 hover:underline"
               >
                 Renvoyer par SMS
               </button>
@@ -115,3 +115,4 @@ export default function VerifyPage() {
     </Suspense>
   )
 }
+
