@@ -23,6 +23,17 @@ export async function submitQuote(data: {
     return { success: true }
   }
 
+  // Check if transitaire is verified
+  const { data: profile } = await supabase
+    .from('profiles')
+    .select('status')
+    .eq('id', userData.user.id)
+    .single()
+
+  if (profile?.status !== 'verified') {
+    return { success: false, error: "Vous devez être vérifié par l'administration pour soumettre un devis." }
+  }
+
   const { error } = await supabase.from('quotes').insert([{
     shipment_id: data.shipmentId || null,
     transitaire_id: userData.user.id,

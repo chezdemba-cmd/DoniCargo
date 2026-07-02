@@ -1,6 +1,7 @@
 import { createClient } from "@/lib/supabase/server"
 import { redirect } from "next/navigation"
 import { Shield, Users, Package, Wallet, TrendingUp, AlertTriangle } from "lucide-react"
+import { KycTable } from "./kyc-table"
 
 export const metadata = {
   title: "Super Admin | DoniCargo",
@@ -43,10 +44,15 @@ export default async function AdminDashboardPage() {
     supabase.from('profiles').select('id', { count: 'exact', head: true }),
     supabase.from('quote_requests').select('id', { count: 'exact', head: true }),
     supabase.from('shipments').select('id', { count: 'exact', head: true }).neq('status', 'livre'),
-    // Summing up escrow would ideally be done via a SQL function or view, but for MVP we fetch and reduce.
-    // Fetch quotes where an amount is specified to simulate escrow potential
     supabase.from('quotes').select('amount_cents').eq('status', 'accepte')
   ])
+
+  // Fetch transitaires for KYC
+  const { data: transitaires } = await supabase
+    .from('profiles')
+    .select('id, full_name, email, role, status')
+    .in('role', ['transitaire', 'transporteur'])
+    .order('created_at', { ascending: false })
 
   // Mocking real escrow since quotes table doesn't have a reliable amount_cents for all active yet
   // We'll calculate a mock escrow value mixed with actual accepted quotes if any
@@ -118,6 +124,8 @@ export default async function AdminDashboardPage() {
           En développement : le journal des activités apparaîtra ici.
         </div>
       </div>
+
+      <KycTable transitaires={transitaires || []} />
     </div>
   )
 }

@@ -4,6 +4,15 @@ import ProClient from "./pro-client"
 export default async function TransitaireDashboardPage() {
   const supabase = await createClient()
   
+  const { data: userData } = await supabase.auth.getUser()
+  const { data: profile } = await supabase
+    .from('profiles')
+    .select('status')
+    .eq('id', userData?.user?.id)
+    .single()
+
+  const isVerified = profile?.status === 'verified'
+
   // Fetch real quote_requests that are open
   const { data: requests } = await supabase
     .from('quote_requests')
@@ -42,6 +51,6 @@ export default async function TransitaireDashboardPage() {
   // or fetch real ones if needed.
   const dossiers: any[] = []
 
-  return <ProClient initialQuotes={formattedQuotes} initialDossiers={dossiers} />
+  return <ProClient initialQuotes={formattedQuotes} initialDossiers={dossiers} isVerified={isVerified} />
 }
 

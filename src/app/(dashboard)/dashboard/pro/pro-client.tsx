@@ -26,7 +26,7 @@ export interface Dossier {
   escrow?: string;
 }
 
-export default function ProClient({ initialQuotes, initialDossiers }: { initialQuotes: QuoteRequest[], initialDossiers: Dossier[] }) {
+export default function ProClient({ initialQuotes, initialDossiers, isVerified = false }: { initialQuotes: QuoteRequest[], initialDossiers: Dossier[], isVerified?: boolean }) {
   const [activeTab, setActiveTab] = useState<"devis" | "dossiers">("devis")
   
   // Modal State
@@ -171,6 +171,18 @@ export default function ProClient({ initialQuotes, initialDossiers }: { initialQ
         </Card>
       </div>
 
+      {!isVerified && (
+        <div className="bg-orange-50 border border-orange-200 p-4 rounded-xl flex gap-4 items-start">
+          <div className="bg-orange-100 text-orange-600 p-2 rounded-lg">
+            <AlertCircle className="w-5 h-5" />
+          </div>
+          <div>
+            <h3 className="font-bold text-orange-800">Compte en attente de vérification (KYC)</h3>
+            <p className="text-orange-700 text-sm mt-1">Vous pouvez consulter les appels d'offres en cours, mais vous ne pourrez pas soumettre de devis tant que votre profil n'aura pas été validé par l'administration.</p>
+          </div>
+        </div>
+      )}
+
       {/* Tabs */}
       <div className="flex gap-4 border-b border-slate-200">
         <button 
@@ -207,8 +219,9 @@ export default function ProClient({ initialQuotes, initialDossiers }: { initialQ
                       Ignorer
                     </button>
                     <button 
-                      onClick={() => handleOpenModal(q)}
-                      className="flex-1 md:flex-none px-4 py-2 bg-orange-600 text-white text-xs font-semibold rounded-lg hover:bg-orange-700 transition-colors shadow-sm hover:shadow-orange-500/20"
+                      onClick={() => isVerified && handleOpenModal(q)}
+                      disabled={!isVerified}
+                      className={`flex-1 md:flex-none px-4 py-2 text-white text-xs font-semibold rounded-lg transition-colors shadow-sm ${isVerified ? 'bg-orange-600 hover:bg-orange-700 hover:shadow-orange-500/20' : 'bg-slate-300 cursor-not-allowed'}`}
                     >
                       Proposer un prix
                     </button>
