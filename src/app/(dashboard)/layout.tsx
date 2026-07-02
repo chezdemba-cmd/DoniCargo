@@ -2,15 +2,24 @@
 
 import { ReactNode, useState } from "react"
 import Link from "next/link"
-import { usePathname } from "next/navigation"
+import { usePathname, useRouter } from "next/navigation"
 import { Package, Truck, LayoutDashboard, FileText, Settings, LogOut, Bell, Briefcase, Menu, X, Calculator, ChevronDown, MessageSquare } from "lucide-react"
 import { Logo } from "@/components/ui/logo"
+import { createClient } from "@/lib/supabase/client"
 
 export default function DashboardLayout({ children }: { children: ReactNode }) {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false)
   const [isNotificationsOpen, setIsNotificationsOpen] = useState(false)
   const [isDemoRoleOpen, setIsDemoRoleOpen] = useState(false)
   const pathname = usePathname()
+  const router = useRouter()
+  const supabase = createClient()
+
+  const handleLogout = async () => {
+    await supabase.auth.signOut()
+    router.push('/login')
+    router.refresh()
+  }
 
   const closeMobileMenu = () => setIsMobileMenuOpen(false)
 
@@ -76,7 +85,10 @@ export default function DashboardLayout({ children }: { children: ReactNode }) {
             <Settings className="w-5 h-5 mr-3" />
             Paramètres
           </Link>
-          <button className="flex items-center px-4 py-2 mt-2 text-slate-400 hover:text-white transition-colors w-full">
+          <button 
+            onClick={handleLogout}
+            className="flex items-center px-4 py-2 mt-2 text-slate-400 hover:text-white transition-colors w-full"
+          >
             <LogOut className="w-5 h-5 mr-3" />
             Déconnexion
           </button>
