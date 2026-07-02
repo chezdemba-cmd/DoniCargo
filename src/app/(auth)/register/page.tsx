@@ -181,7 +181,7 @@ function RegisterForm() {
               </div>
               <div className="grid md:grid-cols-3 gap-4">
                 <div className="md:col-span-1">
-                  <label htmlFor="companyName" className="block text-xs font-semibold text-slate-500 mb-2">Nom de l'entreprise *</label>
+                  <label htmlFor="companyName" className="block text-xs font-semibold text-slate-500 mb-2">Nom de l&apos;entreprise *</label>
                   <input
                     type="text"
                     id="companyName"
@@ -229,7 +229,7 @@ function RegisterForm() {
                   
                   <div className="grid md:grid-cols-2 gap-4">
                     <div>
-                      <label htmlFor="agrementDouane" className="block text-xs font-semibold text-slate-500 mb-2">N° d'Agrément en Douane *</label>
+                      <label htmlFor="agrementDouane" className="block text-xs font-semibold text-slate-500 mb-2">N° d&apos;Agrément en Douane *</label>
                       <input
                         type="text"
                         id="agrementDouane"
@@ -240,7 +240,7 @@ function RegisterForm() {
                       />
                     </div>
                     <div>
-                      <label className="block text-xs font-semibold text-slate-500 mb-2">Copie de l'Agrément (PDF/Image) *</label>
+                      <label className="block text-xs font-semibold text-slate-500 mb-2">Copie de l&apos;Agrément (PDF/Image) *</label>
                       <button type="button" className="w-full flex items-center justify-center gap-2 border-2 border-dashed border-slate-300 hover:border-orange-500 hover:bg-orange-50 hover:text-orange-600 text-slate-500 rounded-lg py-2.5 px-4 text-sm transition-all">
                         <UploadCloud className="w-4 h-4" />
                         Uploader le document

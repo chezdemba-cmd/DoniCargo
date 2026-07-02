@@ -169,7 +169,7 @@ export default async function TransitaireDetailPage({ params }: PageProps) {
               <div>
                 <h5 className="font-bold text-slate-800 text-xs">Acompte Bloqué</h5>
                 <p className="text-[11px] text-slate-500 mt-1 leading-relaxed">
-                  L'acompte que vous payez après acceptation du devis est mis sous séquestre par DoniCargo. Les fonds ne sont libérés qu'après validation de l'étape douanière correspondante.
+                  L&apos;acompte que vous payez après acceptation du devis est mis sous séquestre par DoniCargo. Les fonds ne sont libérés qu&apos;après validation de l&apos;étape douanière correspondante.
                 </p>
               </div>
             </div>

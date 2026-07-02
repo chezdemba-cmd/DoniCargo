@@ -63,7 +63,7 @@ export default function RequestQuoteForm({ transitaireId, transitaireName }: Req
         </div>
         <h4 className="font-bold text-slate-800">Demande de devis soumise !</h4>
         <p className="text-xs text-slate-500 max-w-sm mx-auto leading-relaxed">
-          Votre demande a été envoyée avec succès à **{transitaireName}**. Vous serez notifié dès qu'un montant estimatif aura été proposé.
+          Votre demande a été envoyée avec succès à **{transitaireName}**. Vous serez notifié dès qu&apos;un montant estimatif aura été proposé.
         </p>
       </div>
     )
@@ -167,7 +167,7 @@ export default function RequestQuoteForm({ transitaireId, transitaireName }: Req
 
       {/* Bill of Lading / Invoice Upload Simulation */}
       <div className="border border-dashed border-slate-200 rounded-xl p-4 bg-slate-50/50">
-        <label className="block text-xs font-semibold text-slate-500 mb-2">Facture d'achat fournisseur (Optionnel)</label>
+        <label className="block text-xs font-semibold text-slate-500 mb-2">Facture d&apos;achat fournisseur (Optionnel)</label>
         <div className="flex items-center gap-3">
           <div className="p-3 bg-white border border-slate-200 rounded-lg text-slate-500 hover:text-orange-600 hover:border-orange-200 transition-all cursor-pointer flex items-center gap-2 text-xs font-semibold">
             <Upload className="w-4 h-4" />

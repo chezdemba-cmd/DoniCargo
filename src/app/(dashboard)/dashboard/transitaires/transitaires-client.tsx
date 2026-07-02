@@ -71,7 +71,7 @@ export default function TransitairesClient({ initialData }: { initialData: Trans
             aria-label="Sélectionner l'axe"
           >
             <option value="all">Tous les axes</option>
-            <option value="CI">Départ Côte d'Ivoire (CI)</option>
+            <option value="CI">Départ Côte d&apos;Ivoire (CI)</option>
             <option value="Mali">Arrivée Mali</option>
           </select>
 

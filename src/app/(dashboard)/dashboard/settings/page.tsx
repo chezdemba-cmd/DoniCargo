@@ -48,12 +48,12 @@ export default function SettingsPage() {
       {activeTab === "profile" && (
         <Card className="border-slate-100 shadow-sm">
           <CardHeader className="bg-slate-50 border-b border-slate-100">
-            <CardTitle className="text-lg">Informations de l'entreprise</CardTitle>
+            <CardTitle className="text-lg">Informations de l&apos;entreprise</CardTitle>
           </CardHeader>
           <CardContent className="p-6 space-y-4">
             <div className="grid md:grid-cols-2 gap-6">
               <div className="space-y-2">
-                <label className="text-sm font-medium text-slate-700">Nom de l'entreprise</label>
+                <label className="text-sm font-medium text-slate-700">Nom de l&apos;entreprise</label>
                 <input type="text" defaultValue="Cabinet Diallo & Fils" className="w-full p-3 rounded-xl border border-slate-200 outline-none focus:border-orange-500" />
               </div>
               <div className="space-y-2">
@@ -88,7 +88,7 @@ export default function SettingsPage() {
                 Statut de vérification
                 {isUploaded ? (
                   <span className="text-xs bg-orange-100 text-orange-700 px-3 py-1 rounded-full font-bold flex items-center gap-1">
-                    <Clock className="w-3 h-3" /> En cours d'analyse
+                    <Clock className="w-3 h-3" /> En cours d&apos;analyse
                   </span>
                 ) : (
                   <span className="text-xs bg-slate-100 text-slate-600 px-3 py-1 rounded-full font-bold">Non vérifié</span>
@@ -122,8 +122,8 @@ export default function SettingsPage() {
                     <FileText className="w-5 h-5" />
                   </div>
                   <div>
-                    <h4 className="font-bold text-slate-800">Numéro d'Identification (NIF)</h4>
-                    <p className="text-xs text-slate-500 mt-1">Votre numéro d'immatriculation fiscale national.</p>
+                    <h4 className="font-bold text-slate-800">Numéro d&apos;Identification (NIF)</h4>
+                    <p className="text-xs text-slate-500 mt-1">Votre numéro d&apos;immatriculation fiscale national.</p>
                   </div>
                   {isUploaded ? (
                     <div className="text-green-600 text-sm font-semibold flex items-center gap-2"><CheckCircle2 className="w-4 h-4"/> Document reçu</div>
@@ -140,8 +140,8 @@ export default function SettingsPage() {
                     <User className="w-5 h-5" />
                   </div>
                   <div>
-                    <h4 className="font-bold text-slate-800">Pièce d'Identité (Gérant)</h4>
-                    <p className="text-xs text-slate-500 mt-1">Carte NINA, Passeport ou Carte d'Identité Nationale.</p>
+                    <h4 className="font-bold text-slate-800">Pièce d&apos;Identité (Gérant)</h4>
+                    <p className="text-xs text-slate-500 mt-1">Carte NINA, Passeport ou Carte d&apos;Identité Nationale.</p>
                   </div>
                   {isUploaded ? (
                     <div className="text-green-600 text-sm font-semibold flex items-center gap-2"><CheckCircle2 className="w-4 h-4"/> Document reçu</div>

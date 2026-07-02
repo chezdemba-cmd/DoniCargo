@@ -89,7 +89,7 @@ function VerifyForm() {
           
           <div className="mt-8 text-center border-t border-slate-100 pt-6">
             <p className="text-xs text-slate-500">
-              Vous n'avez pas reçu le code ?{' '}
+              Vous n&apos;avez pas reçu le code ?{' '}
               <button 
                 disabled={isPending}
                 className="font-medium text-orange-600 hover:text-orange-500 hover:underline"

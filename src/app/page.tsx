@@ -49,10 +49,10 @@ export default function Home() {
               Corridor Abidjan - Bamako Opérationnel
             </div>
             <h1 className="text-5xl md:text-7xl font-extrabold text-white tracking-tight leading-[1.1]">
-              Sécurisez vos importations de l'océan à Bamako.
+              Sécurisez vos importations de l&apos;océan à Bamako.
             </h1>
             <p className="text-lg text-slate-400 leading-relaxed max-w-xl">
-              DoniCargo connecte commerçants, transitaires agréés et transporteurs en Afrique de l'Ouest. Suivi en temps réel, coffre-fort documentaire et paiement sécurisé (Escrow).
+              DoniCargo connecte commerçants, transitaires agréés et transporteurs en Afrique de l&apos;Ouest. Suivi en temps réel, coffre-fort documentaire et paiement sécurisé (Escrow).
             </p>
             <div className="flex flex-col sm:flex-row gap-4 pt-4">
               <Link 
@@ -147,7 +147,7 @@ export default function Home() {
               Digitaliser tout le parcours import
             </h2>
             <p className="text-lg text-slate-400">
-              Une suite d'outils professionnels pour assurer la transparence de vos opérations logistiques en Afrique de l'Ouest.
+              Une suite d&apos;outils professionnels pour assurer la transparence de vos opérations logistiques en Afrique de l&apos;Ouest.
             </p>
           </div>
 
@@ -158,7 +158,7 @@ export default function Home() {
               </div>
               <h3 className="text-xl font-bold text-white mb-3">Suivi en temps réel</h3>
               <p className="text-slate-400 leading-relaxed">
-                Suivi des conteneurs, des colis et des camions sur une carte interactive de l'arrivée au port jusqu'à la livraison finale.
+                Suivi des conteneurs, des colis et des camions sur une carte interactive de l&apos;arrivée au port jusqu&apos;à la livraison finale.
               </p>
             </div>
 
@@ -181,7 +181,7 @@ export default function Home() {
               </div>
               <h3 className="text-xl font-bold text-white mb-3">Calculateur IA Douane</h3>
               <p className="text-slate-400 leading-relaxed">
-                Estimez instantanément les taxes douanières selon la nature de vos marchandises et les règles en vigueur de l'UEMOA.
+                Estimez instantanément les taxes douanières selon la nature de vos marchandises et les règles en vigueur de l&apos;UEMOA.
               </p>
             </div>
 
@@ -211,7 +211,7 @@ export default function Home() {
               </div>
               <h3 className="text-xl font-bold text-white mb-3">Optimisation par Groupage</h3>
               <p className="text-slate-400 leading-relaxed">
-                Mutualisez l'espace LCL dans les conteneurs avec d'autres commerçants pour réduire drastiquement vos coûts.
+                Mutualisez l&apos;espace LCL dans les conteneurs avec d&apos;autres commerçants pour réduire drastiquement vos coûts.
               </p>
             </div>
           </div>

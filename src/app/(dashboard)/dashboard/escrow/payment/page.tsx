@@ -61,7 +61,7 @@ export default function EscrowPaymentPage() {
         <h1 className="text-3xl font-bold text-slate-900 tracking-tight">Dépôt Escrow</h1>
         <p className="text-slate-500 max-w-md mx-auto">
           Sécurisez vos fonds pour le dossier <span className="font-bold text-slate-700">{shipmentId || '...' }</span>. 
-          L'argent ne sera débloqué qu'à la livraison validée.
+          L&apos;argent ne sera débloqué qu&apos;à la livraison validée.
         </p>
       </div>
 

@@ -15,7 +15,7 @@ export default function DemandeDevisPage() {
         <div>
           <h1 className="text-2xl font-bold text-slate-800 tracking-tight">Demande de Devis Groupé</h1>
           <p className="text-sm text-slate-500 mt-1">
-            Soumettez votre demande en un seul clic à l'ensemble des transitaires agréés.
+            Soumettez votre demande en un seul clic à l&apos;ensemble des transitaires agréés.
           </p>
         </div>
       </div>

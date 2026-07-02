@@ -11,7 +11,7 @@ export interface Shipment {
   container_id?: string
   estimated_arrival?: string
   escrow_amount?: number
-  quotes?: any[]
+  quotes?: Record<string, unknown>[]
 }
 
 // Mock Fallback Data

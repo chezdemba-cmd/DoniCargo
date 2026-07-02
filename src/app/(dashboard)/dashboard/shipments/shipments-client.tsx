@@ -48,7 +48,7 @@ export default function ShipmentsClient({ initialData }: { initialData: Shipment
           </div>
           <h3 className="text-lg font-bold text-slate-800">Aucune expédition en cours</h3>
           <p className="text-sm text-slate-500 max-w-md mx-auto">
-            Vous n'avez aucune expédition active pour le moment. Demandez un devis à un transitaire pour commencer.
+            Vous n&apos;avez aucune expédition active pour le moment. Demandez un devis à un transitaire pour commencer.
           </p>
           <Link 
             href="/dashboard/transitaires"
@@ -86,7 +86,7 @@ export default function ShipmentsClient({ initialData }: { initialData: Shipment
 
                 {/* Tracking Progress Bar */}
                 <CardContent className="p-6 border-b border-slate-100">
-                  <h4 className="text-xs text-slate-400 font-semibold uppercase tracking-wider mb-6">Progression de l'acheminement</h4>
+                  <h4 className="text-xs text-slate-400 font-semibold uppercase tracking-wider mb-6">Progression de l&apos;acheminement</h4>
                   
                   <div className="relative flex items-center justify-between">
                     <div className="absolute left-0 right-0 top-1/2 -translate-y-1/2 h-1 bg-slate-100 z-0"></div>
@@ -179,7 +179,7 @@ export default function ShipmentsClient({ initialData }: { initialData: Shipment
                   {/* Logistics Journal Timeline (Mock for now as it needs a separate logs table) */}
                   <CardContent className="p-6 space-y-6">
                     <h4 className="text-xs text-slate-400 font-semibold uppercase tracking-wider border-b border-slate-100 pb-3">
-                      Journal d'activité logistique
+                      Journal d&apos;activité logistique
                     </h4>
                     <div className="relative pl-6 space-y-8 before:absolute before:left-2 before:top-2 before:bottom-2 before:w-0.5 before:bg-slate-200">
                       <div className="text-sm text-slate-500">Mises à jour non disponibles pour cette expédition.</div>
@@ -198,13 +198,13 @@ export default function ShipmentsClient({ initialData }: { initialData: Shipment
                       <div className="flex-1 p-4 overflow-y-auto space-y-4">
                         <div className="flex flex-col gap-1 items-end">
                           <div className="bg-orange-600 text-white p-3 rounded-2xl rounded-tr-sm text-sm max-w-[80%]">
-                            Bonjour, j'ai accepté votre devis. Quand pensez-vous pouvoir enlever la marchandise ?
+                            Bonjour, j&apos;ai accepté votre devis. Quand pensez-vous pouvoir enlever la marchandise ?
                           </div>
                           <span className="text-[10px] text-slate-400">10:45</span>
                         </div>
                         <div className="flex flex-col gap-1 items-start">
                           <div className="bg-slate-100 text-slate-800 p-3 rounded-2xl rounded-tl-sm text-sm max-w-[80%]">
-                            Bonjour ! Merci pour votre confiance. L'enlèvement est prévu demain matin. Nous attendons juste la confirmation du paiement Escrow.
+                            Bonjour ! Merci pour votre confiance. L&apos;enlèvement est prévu demain matin. Nous attendons juste la confirmation du paiement Escrow.
                           </div>
                           <span className="text-[10px] text-slate-400">11:02</span>
                         </div>

@@ -48,7 +48,7 @@ export default function MessagesPage() {
                 <h3 className="font-semibold text-slate-800 truncate">Transit Express</h3>
                 <span className="text-[10px] text-slate-400">10:38</span>
               </div>
-              <p className="text-sm text-slate-500 truncate">D'ici jeudi. Je vous enverrai...</p>
+              <p className="text-sm text-slate-500 truncate">D&apos;ici jeudi. Je vous enverrai...</p>
             </div>
           </div>
           
@@ -93,7 +93,7 @@ export default function MessagesPage() {
         <div className="flex-1 overflow-y-auto p-4 space-y-4">
           <div className="text-center">
             <span className="inline-block bg-white/60 text-slate-500 text-[10px] font-bold px-3 py-1 rounded-full uppercase tracking-wider backdrop-blur-sm">
-              Aujourd'hui
+              Aujourd&apos;hui
             </span>
           </div>
 

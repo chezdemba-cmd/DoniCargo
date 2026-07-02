@@ -43,7 +43,7 @@ export default function SecuriteOHADAPage() {
           </div>
           <h1 className="text-4xl md:text-6xl font-bold mb-6">Confiance, Transparence & <br /> Droit OHADA</h1>
           <p className="text-slate-400 text-lg max-w-2xl mx-auto mb-10 leading-relaxed">
-            Parce que la logistique internationale requiert une confiance absolue. DoniCargo a été conçu en parfaite conformité avec le Droit Commercial Général de l'OHADA, protégeant toutes les parties prenantes.
+            Parce que la logistique internationale requiert une confiance absolue. DoniCargo a été conçu en parfaite conformité avec le Droit Commercial Général de l&apos;OHADA, protégeant toutes les parties prenantes.
           </p>
           <div className="flex justify-center gap-4">
             <button className="bg-slate-800 hover:bg-slate-700 text-white px-6 py-3 rounded-xl border border-slate-700 transition-colors flex items-center gap-2">
@@ -68,7 +68,7 @@ export default function SecuriteOHADAPage() {
               </div>
               <h3 className="text-xl font-bold text-slate-800 mb-3">Conformité Légale (OHADA)</h3>
               <p className="text-slate-600 leading-relaxed text-sm mb-4">
-                Chaque accord de transport passé via la plateforme génère une trace numérique indélébile, valant preuve en cas de litige selon l'Acte Uniforme relatif au droit commercial général.
+                Chaque accord de transport passé via la plateforme génère une trace numérique indélébile, valant preuve en cas de litige selon l&apos;Acte Uniforme relatif au droit commercial général.
               </p>
               <ul className="text-sm text-slate-500 space-y-2">
                 <li className="flex items-start gap-2"><CheckIcon /> Reconnaissance des contrats électroniques</li>
@@ -83,7 +83,7 @@ export default function SecuriteOHADAPage() {
               </div>
               <h3 className="text-xl font-bold text-white mb-3">Paiement Séquestre (Escrow)</h3>
               <p className="text-slate-400 leading-relaxed text-sm mb-4">
-                L'argent du client n'est jamais versé directement au transporteur à la commande. Il est conservé sur un compte séquestre par un tiers de confiance financier agréé par la BCEAO.
+                L&apos;argent du client n&apos;est jamais versé directement au transporteur à la commande. Il est conservé sur un compte séquestre par un tiers de confiance financier agréé par la BCEAO.
               </p>
               <ul className="text-sm text-slate-300 space-y-2">
                 <li className="flex items-start gap-2"><CheckOrangeIcon /> Fonds bloqués à la validation</li>
@@ -99,12 +99,12 @@ export default function SecuriteOHADAPage() {
               </div>
               <h3 className="text-xl font-bold text-slate-800 mb-3">Vérification Stricte (KYB)</h3>
               <p className="text-slate-600 leading-relaxed text-sm mb-4">
-                "Know Your Business". Avant d'apparaître sur la Marketplace, chaque entreprise logistique subit une vérification rigoureuse de son existence légale.
+                &quot;Know Your Business&quot;. Avant d&apos;apparaître sur la Marketplace, chaque entreprise logistique subit une vérification rigoureuse de son existence légale.
               </p>
               <ul className="text-sm text-slate-500 space-y-2">
                 <li className="flex items-start gap-2"><CheckIcon /> Vérification du RCCM (Registre Commerce)</li>
-                <li className="flex items-start gap-2"><CheckIcon /> Validation du NIF (Numéro d'Identification Fiscale)</li>
-                <li className="flex items-start gap-2"><CheckIcon /> Exigence de l'Agrément en Douane</li>
+                <li className="flex items-start gap-2"><CheckIcon /> Validation du NIF (Numéro d&apos;Identification Fiscale)</li>
+                <li className="flex items-start gap-2"><CheckIcon /> Exigence de l&apos;Agrément en Douane</li>
               </ul>
             </div>
 

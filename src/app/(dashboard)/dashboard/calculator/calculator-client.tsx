@@ -50,8 +50,8 @@ export default function CalculatorClient() {
           </div>
           <h1 className="text-3xl font-bold tracking-tight mb-2">Calculateur de Douane UEMOA</h1>
           <p className="text-slate-400 text-sm leading-relaxed">
-            Estimez instantanément vos droits et taxes de douane pour toutes vos importations en Afrique de l'Ouest. 
-            Nos calculs sont basés sur le Tarif Extérieur Commun (TEC) officiel de l'UEMOA.
+            Estimez instantanément vos droits et taxes de douane pour toutes vos importations en Afrique de l&apos;Ouest. 
+            Nos calculs sont basés sur le Tarif Extérieur Commun (TEC) officiel de l&apos;UEMOA.
           </p>
         </div>
         <div className="absolute -right-20 -bottom-20 w-80 h-80 bg-blue-500/20 rounded-full blur-3xl -z-0"></div>
@@ -64,7 +64,7 @@ export default function CalculatorClient() {
         <div className="lg:col-span-5 space-y-6">
           <Card className="border-slate-200 shadow-lg shadow-slate-200/40">
             <CardHeader className="bg-slate-50 border-b border-slate-100 pb-4">
-              <CardTitle className="text-lg text-slate-800">Paramètres de l'importation</CardTitle>
+              <CardTitle className="text-lg text-slate-800">Paramètres de l&apos;importation</CardTitle>
             </CardHeader>
             <CardContent className="p-6 space-y-5">
               
@@ -117,7 +117,7 @@ export default function CalculatorClient() {
 
               <div className="space-y-2">
                 <label className="text-sm font-semibold text-slate-700 flex justify-between">
-                  Frais d'Assurance
+                  Frais d&apos;Assurance
                   <span className="text-slate-400 font-normal">En FCFA</span>
                 </label>
                 <div className="relative">
@@ -135,7 +135,7 @@ export default function CalculatorClient() {
                     onClick={() => setInsurance(Math.round((valFob + valFreight) * 0.01).toString())}
                     className="text-xs text-blue-600 hover:underline font-medium"
                   >
-                    Estimer l'assurance à 1%
+                    Estimer l&apos;assurance à 1%
                   </button>
                 </div>
               </div>
@@ -178,7 +178,7 @@ export default function CalculatorClient() {
                       </h4>
                       <span className="font-bold text-lg text-slate-900">{cif.toLocaleString('fr-FR', { maximumFractionDigits: 0 })} FCFA</span>
                     </div>
-                    <p className="text-xs text-slate-500 mb-3">Somme du FOB, Fret et Assurance. C'est la base de calcul des taxes.</p>
+                    <p className="text-xs text-slate-500 mb-3">Somme du FOB, Fret et Assurance. C&apos;est la base de calcul des taxes.</p>
                     <div className="h-px bg-slate-200 w-full"></div>
                   </div>
 
@@ -220,7 +220,7 @@ export default function CalculatorClient() {
                   {/* Summary */}
                   <div className="mt-8 pt-6 border-t-2 border-dashed border-slate-200">
                     <div className="flex justify-between items-center">
-                      <span className="font-semibold text-slate-600">Coût d'importation total estimé</span>
+                      <span className="font-semibold text-slate-600">Coût d&apos;importation total estimé</span>
                       <span className="text-xl font-bold text-slate-900">{totalCost.toLocaleString('fr-FR', { maximumFractionDigits: 0 })} FCFA</span>
                     </div>
                     <p className="text-xs text-right text-slate-400 mt-1">(Marchandise + Transport + Assurance + Taxes)</p>

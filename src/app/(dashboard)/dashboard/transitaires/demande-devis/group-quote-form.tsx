@@ -59,7 +59,7 @@ export default function GroupQuoteForm() {
         <div>
           <h4 className="text-xl font-bold text-slate-800">Demande diffusée avec succès !</h4>
           <p className="text-sm text-slate-500 max-w-md mx-auto leading-relaxed mt-2">
-            Votre appel d'offres a été envoyé à tous les transitaires certifiés sur l'axe {origin} ➔ {destination}. Vous recevrez leurs devis dans votre espace.
+            Votre appel d&apos;offres a été envoyé à tous les transitaires certifiés sur l&apos;axe {origin} ➔ {destination}. Vous recevrez leurs devis dans votre espace.
           </p>
         </div>
         <div className="pt-4 flex justify-center gap-4">
@@ -183,7 +183,7 @@ export default function GroupQuoteForm() {
         <div className="w-12 h-12 rounded-full bg-white border border-slate-200 flex items-center justify-center text-orange-600 mb-3 shadow-sm">
           <Upload className="w-5 h-5" />
         </div>
-        <h4 className="text-sm font-bold text-slate-800 mb-1">Documents d'accompagnement</h4>
+        <h4 className="text-sm font-bold text-slate-800 mb-1">Documents d&apos;accompagnement</h4>
         <p className="text-xs text-slate-500 max-w-sm mb-4">
           Ajoutez une facture proforma ou un connaissement (BL) pour obtenir des devis plus précis.
         </p>

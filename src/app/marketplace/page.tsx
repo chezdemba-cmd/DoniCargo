@@ -1,5 +1,6 @@
 import Link from "next/link"
-import { Search, MapPin, Star, ShieldCheck, CheckCircle2, Filter, ChevronRight, Package, Truck, ArrowRight } from "lucide-react"
+import Image from "next/image"
+import { Search, MapPin, Star, ShieldCheck, CheckCircle2, Filter, Package, Truck, ArrowRight } from "lucide-react"
 import { Logo } from "@/components/ui/logo"
 import { Badge } from "@/components/ui/badge"
 
@@ -100,7 +101,7 @@ export default function MarketplacePage() {
           <Badge variant="outline" className="bg-blue-500/10 text-blue-400 border-blue-500/20 px-4 py-2 text-sm font-semibold mb-6">
             RÉSEAU DE CONFIANCE
           </Badge>
-          <h1 className="text-4xl md:text-6xl font-bold mb-6">Trouvez le partenaire idéal pour <br /> vos expéditions en Afrique de l'Ouest</h1>
+          <h1 className="text-4xl md:text-6xl font-bold mb-6">Trouvez le partenaire idéal pour <br /> vos expéditions en Afrique de l&apos;Ouest</h1>
           <p className="text-slate-400 text-lg max-w-2xl mx-auto mb-10">
             Comparez les transitaires agréés en douane et les transporteurs routiers certifiés. 
             Protégez vos paiements grâce au système Escrow de DoniCargo.
@@ -146,7 +147,7 @@ export default function MarketplacePage() {
               <div key={pro.id} className="bg-white rounded-2xl border border-slate-200 shadow-sm hover:shadow-xl transition-all duration-300 hover:-translate-y-1 group flex flex-col">
                 <div className="p-6 flex-1">
                   <div className="flex justify-between items-start mb-4">
-                    <img src={pro.imageUrl} alt={pro.name} className="w-16 h-16 rounded-xl border border-slate-100 shadow-sm object-cover" />
+                    <Image src={pro.imageUrl} alt={pro.name} width={64} height={64} unoptimized className="w-16 h-16 rounded-xl border border-slate-100 shadow-sm object-cover" />
                     {pro.verified && (
                       <div className="bg-green-50 text-green-700 px-3 py-1 rounded-full text-[10px] font-bold flex items-center gap-1 border border-green-200">
                         <ShieldCheck className="w-3 h-3" /> Agréé & Vérifié
@@ -204,7 +205,7 @@ export default function MarketplacePage() {
 
       {/* Footer minimaliste */}
       <footer className="bg-slate-900 text-slate-400 py-8 border-t border-slate-800 text-center">
-        <p className="text-sm">© 2026 DoniCargo. La marketplace de confiance pour l'Afrique de l'Ouest.</p>
+        <p className="text-sm">© 2026 DoniCargo. La marketplace de confiance pour l&apos;Afrique de l&apos;Ouest.</p>
       </footer>
     </div>
   )

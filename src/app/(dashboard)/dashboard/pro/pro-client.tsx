@@ -98,7 +98,7 @@ export default function ProClient({ initialQuotes, initialDossiers }: { initialQ
         <div>
           <h1 className="text-2xl font-bold text-slate-800 tracking-tight">Espace Professionnel</h1>
           <p className="text-sm text-slate-500 mt-1">
-            Gérez vos demandes de devis et suivez l'avancement de vos dossiers logistiques.
+            Gérez vos demandes de devis et suivez l&apos;avancement de vos dossiers logistiques.
           </p>
         </div>
         <div className="flex gap-2">
@@ -302,7 +302,7 @@ export default function ProClient({ initialQuotes, initialDossiers }: { initialQ
                   </div>
                   <h4 className="text-xl font-bold text-slate-800">Offre transmise !</h4>
                   <p className="text-sm text-slate-500 mt-2">
-                    Le client a été notifié de votre proposition. Vous serez alerté s'il accepte le devis.
+                    Le client a été notifié de votre proposition. Vous serez alerté s&apos;il accepte le devis.
                   </p>
                 </div>
               ) : (
@@ -358,7 +358,7 @@ export default function ProClient({ initialQuotes, initialDossiers }: { initialQ
                       ) : (
                         <>
                           <Send className="w-4 h-4 mr-2" />
-                          Envoyer l'offre
+                          Envoyer l&apos;offre
                         </>
                       )}
                     </button>

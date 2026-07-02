@@ -36,7 +36,7 @@ export default async function Dashboard() {
         <div className="relative z-10 max-w-xl space-y-3">
           <h1 className="text-3xl font-bold tracking-tight">Bonjour, Cabinet Diallo & Fils 👋</h1>
           <p className="text-slate-300 text-sm leading-relaxed">
-            Bienvenue sur votre espace d'importation. Vous avez actuellement {activeShipmentsCount} dossier(s) de marchandises en cours de transit sur l'axe Abidjan - Bamako.
+            Bienvenue sur votre espace d&apos;importation. Vous avez actuellement {activeShipmentsCount} dossier(s) de marchandises en cours de transit sur l&apos;axe Abidjan - Bamako.
           </p>
           <div className="pt-2 flex gap-3">
             <Link 
@@ -187,7 +187,7 @@ export default async function Dashboard() {
                 <div>
                   <h4 className="font-bold text-amber-800 text-xs">Document Manquant</h4>
                   <p className="text-[11px] text-amber-600 mt-1 leading-relaxed">
-                    Veuillez ajouter la **Facture Commerciale** pour le conteneur #HLX-9029 pour débloquer l'étape douanière.
+                    Veuillez ajouter la **Facture Commerciale** pour le conteneur #HLX-9029 pour débloquer l&apos;étape douanière.
                   </p>
                 </div>
               </div>
@@ -197,7 +197,7 @@ export default async function Dashboard() {
                 <div>
                   <h4 className="font-bold text-orange-800 text-xs">Acompte à payer</h4>
                   <p className="text-[11px] text-orange-600 mt-1 leading-relaxed">
-                    Le devis pour le dossier #COL-1840 a été accepté. Sécurisez l'acompte (450 000 F) sur le compte Escrow.
+                    Le devis pour le dossier #COL-1840 a été accepté. Sécurisez l&apos;acompte (450 000 F) sur le compte Escrow.
                   </p>
                 </div>
               </div>

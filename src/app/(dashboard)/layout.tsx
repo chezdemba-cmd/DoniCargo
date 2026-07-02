@@ -94,7 +94,7 @@ export default function DashboardLayout({ children }: { children: ReactNode }) {
             >
               <Menu className="w-6 h-6" />
             </button>
-            <h2 className="text-lg font-semibold text-slate-800 hidden sm:block">Vue d'ensemble</h2>
+            <h2 className="text-lg font-semibold text-slate-800 hidden sm:block">Vue d&apos;ensemble</h2>
           </div>
           
           <div className="flex items-center space-x-2 sm:space-x-4">

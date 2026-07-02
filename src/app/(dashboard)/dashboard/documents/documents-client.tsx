@@ -130,7 +130,7 @@ export default function DocumentsClient({ initialDocuments }: { initialDocuments
                   {isUploading ? "Envoi en cours..." : "Glissez-déposez vos fichiers ici"}
                 </p>
                 <p className="text-xs text-slate-500 mb-4">
-                  PDF, JPG, PNG jusqu'à 10MB
+                  PDF, JPG, PNG jusqu&apos;à 10MB
                 </p>
                 <label className={`cursor-pointer bg-orange-600 hover:bg-orange-700 text-white px-5 py-2.5 rounded-xl text-sm font-semibold shadow-sm transition-colors inline-block ${isUploading ? 'opacity-50 pointer-events-none' : ''}`}>
                   Parcourir les fichiers

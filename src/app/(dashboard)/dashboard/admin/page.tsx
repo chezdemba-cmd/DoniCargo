@@ -41,7 +41,7 @@ export default function AdminDashboardPage() {
 
       <Tabs defaultValue="overview" className="space-y-6">
         <TabsList className="bg-slate-100 p-1.5 rounded-xl border border-slate-200">
-          <TabsTrigger value="overview" className="rounded-lg data-[state=active]:bg-white data-[state=active]:shadow-sm data-[state=active]:text-slate-900">Vue d'ensemble</TabsTrigger>
+          <TabsTrigger value="overview" className="rounded-lg data-[state=active]:bg-white data-[state=active]:shadow-sm data-[state=active]:text-slate-900">Vue d&apos;ensemble</TabsTrigger>
           <TabsTrigger value="users" className="rounded-lg data-[state=active]:bg-white data-[state=active]:shadow-sm data-[state=active]:text-slate-900">Utilisateurs</TabsTrigger>
           <TabsTrigger value="escrow" className="rounded-lg data-[state=active]:bg-white data-[state=active]:shadow-sm data-[state=active]:text-slate-900">Fonds Escrow</TabsTrigger>
           <TabsTrigger value="disputes" className="rounded-lg data-[state=active]:bg-white data-[state=active]:shadow-sm data-[state=active]:text-slate-900">Litiges & KYC</TabsTrigger>
@@ -276,7 +276,7 @@ export default function AdminDashboardPage() {
                   Gestion des Litiges (Escrow)
                 </CardTitle>
                 <CardDescription className="text-xs">
-                  Médiation entre le transitaire (qui réclame les fonds) et le client (qui refuse de valider l'étape).
+                  Médiation entre le transitaire (qui réclame les fonds) et le client (qui refuse de valider l&apos;étape).
                 </CardDescription>
               </CardHeader>
               <CardContent className="p-0 flex-1 bg-slate-50/50">
@@ -285,7 +285,7 @@ export default function AdminDashboardPage() {
                     <div className="flex justify-between items-start">
                       <div>
                         <h4 className="font-bold text-slate-800 text-sm">Dossier #HLX-8820 (Transit Express CI)</h4>
-                        <p className="text-xs text-slate-500 mt-1">Étape contestée : "Arrivée Douane Bamako" (2 500 000 FCFA)</p>
+                        <p className="text-xs text-slate-500 mt-1">Étape contestée : &quot;Arrivée Douane Bamako&quot; (2 500 000 FCFA)</p>
                       </div>
                       <Badge className="bg-red-50 text-red-700 border-red-200">Litige Ouvert</Badge>
                     </div>
@@ -293,11 +293,11 @@ export default function AdminDashboardPage() {
                     <div className="bg-slate-50 border border-slate-200 rounded-lg p-4 text-xs space-y-3">
                       <div className="flex gap-2">
                         <span className="font-bold text-slate-700 shrink-0">Client :</span>
-                        <span className="text-slate-600">"Le conteneur n'est toujours pas au bureau des douanes de Bamako."</span>
+                        <span className="text-slate-600">&quot;Le conteneur n&apos;est toujours pas au bureau des douanes de Bamako.&quot;</span>
                       </div>
                       <div className="flex gap-2">
                         <span className="font-bold text-slate-700 shrink-0">Transitaire :</span>
-                        <span className="text-slate-600">"Le camion est bloqué à la frontière Zégoua, mais l'étape douanière est administrativement lancée."</span>
+                        <span className="text-slate-600">&quot;Le camion est bloqué à la frontière Zégoua, mais l&apos;étape douanière est administrativement lancée.&quot;</span>
                       </div>
                     </div>
 
@@ -319,7 +319,7 @@ export default function AdminDashboardPage() {
               <CardHeader className="border-b border-slate-100">
                 <CardTitle className="text-lg flex items-center gap-2">
                   <FileCheck className="w-5 h-5 text-orange-500" />
-                  Approbation KYC (Vérification d'Entreprise)
+                  Approbation KYC (Vérification d&apos;Entreprise)
                 </CardTitle>
                 <CardDescription className="text-xs">
                   Nouveaux transitaires souhaitant intégrer la Marketplace.
