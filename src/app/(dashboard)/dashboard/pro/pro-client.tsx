@@ -97,9 +97,14 @@ export default function ProClient({ initialQuotes, initialDossiers }: { initialQ
     e.preventDefault()
     setIsSubmitting(true)
     
+    if (!selectedQuote) {
+      setIsSubmitting(false)
+      return
+    }
+
     await submitQuote({
       quoteRequestId: selectedQuote.quote_request_id || selectedQuote.id,
-      shipmentId: selectedQuote.shipment_id,
+      shipmentId: selectedQuote.shipment_id || "",
       amountFCFA: Number(proposedAmount),
       message: message
     })
