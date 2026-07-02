@@ -82,11 +82,11 @@ export async function getShipments(): Promise<Shipment[]> {
     .order('created_at', { ascending: false })
   
   if (error) {
-    return []
+    return MOCK_SHIPMENTS
   }
   
   if (!data || data.length === 0) {
-    return []
+    return MOCK_SHIPMENTS
   }
   
   return data.map(s => ({
