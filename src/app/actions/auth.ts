@@ -3,6 +3,17 @@
 import { createClient } from "@/lib/supabase/server"
 import { redirect } from "next/navigation"
 
+function translateAuthError(error: string): string {
+  const err = error.toLowerCase()
+  if (err.includes("invalid login credentials")) return "Identifiants invalides. Vérifiez votre email et mot de passe."
+  if (err.includes("already registered") || err.includes("user already exists")) return "Cet email est déjà utilisé. Veuillez vous connecter."
+  if (err.includes("password should be at least")) return "Le mot de passe doit contenir au moins 6 caractères."
+  if (err.includes("email not confirmed")) return "Veuillez confirmer votre adresse email."
+  if (err.includes("rate limit")) return "Trop de tentatives. Veuillez patienter."
+  if (err.includes("unable to validate email") || err.includes("invalid email")) return "Format d'email invalide."
+  return "Une erreur est survenue."
+}
+
 export async function loginWithEmail(formData: FormData): Promise<{error?: string} | void> {
   const email = formData.get("email") as string
   const password = formData.get("password") as string
@@ -18,7 +29,7 @@ export async function loginWithEmail(formData: FormData): Promise<{error?: strin
   })
 
   if (error) {
-    return { error: error.message }
+    return { error: translateAuthError(error.message) }
   }
   
   redirect("/dashboard")
@@ -48,7 +59,9 @@ export async function completeOnboarding(data: {
     password: data.password,
   })
 
-  if (signUpError) return { error: signUpError.message }
+  if (signUpError) {
+    return { error: translateAuthError(signUpError.message) }
+  }
   if (!authData.user) return { error: "Erreur lors de la création de l'utilisateur" }
 
   // 2. Création du Profil
