@@ -24,7 +24,7 @@ export async function submitQuote(data: {
   }
 
   const { error } = await supabase.from('quotes').insert([{
-    shipment_id: data.shipmentId,
+    shipment_id: data.shipmentId || null,
     transitaire_id: userData.user.id,
     quote_request_id: data.quoteRequestId,
     amount_cents: data.amountFCFA, // Enregistré directement tel quel

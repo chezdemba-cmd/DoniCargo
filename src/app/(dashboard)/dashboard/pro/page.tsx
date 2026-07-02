@@ -11,18 +11,17 @@ export default async function TransitaireDashboardPage() {
       id,
       status,
       created_at,
-      shipments (
-        id,
-        title,
-        origin,
-        destination,
-        goods_description
-      ),
+      title,
+      origin,
+      destination,
+      container_type,
+      weight_kg,
+      description,
       profiles (
         full_name
       )
     `)
-    .eq('status', 'ouverte')
+    .eq('status', 'ouvert')
     .order('created_at', { ascending: false })
     .limit(10)
 
@@ -30,10 +29,10 @@ export default async function TransitaireDashboardPage() {
   const formattedQuotes = (requests || []).map((req: any) => ({
     id: req.id.substring(0, 8).toUpperCase(),
     quote_request_id: req.id,
-    shipment_id: req.shipments?.id,
+    shipment_id: null,
     client: req.profiles?.full_name || "Client Anonyme",
-    cargo: req.shipments?.title || req.shipments?.goods_description || "Marchandise diverse",
-    route: `${req.shipments?.origin || 'Origine'} → ${req.shipments?.destination || 'Destination'}`,
+    cargo: req.title,
+    route: `${req.origin} → ${req.destination}`,
     date: new Date(req.created_at).toLocaleDateString('fr-FR', { day: 'numeric', month: 'short', hour: '2-digit', minute: '2-digit' }),
     status: req.status
   }))
