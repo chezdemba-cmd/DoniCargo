@@ -11,6 +11,8 @@ type Role = "commercant" | "transitaire" | "transporteur" | "chauffeur"
 
 function RegisterForm() {
   const searchParams = useSearchParams()
+  const [email, setEmail] = useState("")
+  const [password, setPassword] = useState("")
   const [phone, setPhone] = useState(searchParams.get("phone") || "")
   const [role, setRole] = useState<Role>("commercant")
   const [fullName, setFullName] = useState("")
@@ -26,8 +28,13 @@ function RegisterForm() {
     e.preventDefault()
     setError(null)
 
+    if (!email || !password) {
+      setError("Veuillez renseigner un email et un mot de passe")
+      return
+    }
+
     if (!phone) {
-      setError("Veuillez renseigner votre numéro de téléphone (Obligatoire pour l'authentification SMS)")
+      setError("Veuillez renseigner votre numéro de téléphone")
       return
     }
 
@@ -48,6 +55,8 @@ function RegisterForm() {
 
     startTransition(async () => {
       const res = await completeOnboarding({
+        email,
+        password,
         phone,
         role,
         fullName,
@@ -83,6 +92,30 @@ function RegisterForm() {
           {/* 1. Profile information */}
           <div className="space-y-4">
             <h3 className="text-sm font-bold text-slate-800 uppercase tracking-wider">1. Informations Personnelles</h3>
+            
+            <div className="grid md:grid-cols-2 gap-4">
+              <div>
+                <label className="block text-xs font-semibold text-slate-500 mb-2">Adresse Email *</label>
+                <input
+                  type="email"
+                  value={email}
+                  onChange={(e) => setEmail(e.target.value)}
+                  placeholder="contact@exemple.com"
+                  className="block w-full border border-slate-200 bg-white text-slate-800 rounded-lg py-3 px-4 text-sm focus:ring-2 focus:ring-orange-500/20 focus:border-orange-500 outline-none transition-all"
+                />
+              </div>
+              <div>
+                <label className="block text-xs font-semibold text-slate-500 mb-2">Mot de passe *</label>
+                <input
+                  type="password"
+                  value={password}
+                  onChange={(e) => setPassword(e.target.value)}
+                  placeholder="••••••••"
+                  className="block w-full border border-slate-200 bg-white text-slate-800 rounded-lg py-3 px-4 text-sm focus:ring-2 focus:ring-orange-500/20 focus:border-orange-500 outline-none transition-all"
+                />
+              </div>
+            </div>
+
             <div className="grid md:grid-cols-2 gap-4">
               <div>
                 <label className="block text-xs font-semibold text-slate-500 mb-2">Numéro de téléphone *</label>
@@ -95,7 +128,7 @@ function RegisterForm() {
                 />
               </div>
               <div>
-                <label htmlFor="fullName" className="block text-xs font-semibold text-slate-500 mb-2">Nom complet</label>
+                <label htmlFor="fullName" className="block text-xs font-semibold text-slate-500 mb-2">Nom complet *</label>
                 <input
                   type="text"
                   id="fullName"
