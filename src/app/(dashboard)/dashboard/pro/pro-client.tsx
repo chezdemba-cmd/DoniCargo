@@ -42,6 +42,12 @@ export default function ProClient({ initialQuotes, initialDossiers, isVerified =
   const [selectedDossier, setSelectedDossier] = useState<Dossier | null>(null)
   const [newStatus, setNewStatus] = useState("douane")
 
+  // Document Upload Modal State
+  const [isUploadModalOpen, setIsUploadModalOpen] = useState(false)
+  const [docName, setDocName] = useState("")
+  const [docType, setDocType] = useState("Facture")
+  const [isUploading, setIsUploading] = useState(false)
+
   // Utilisation des données réelles ou du mock s'il n'y a rien
   const quotes = initialQuotes.length > 0 ? initialQuotes : [
     {
@@ -255,16 +261,27 @@ export default function ProClient({ initialQuotes, initialDossiers, isVerified =
                       <span className="text-xs font-semibold text-slate-700">Action requise :</span>
                       <span className="text-xs text-slate-600">{d.nextAction}</span>
                     </div>
-                    <button 
-                      onClick={() => {
-                        setSelectedDossier(d);
-                        setNewStatus('douane');
-                        setIsStatusModalOpen(true);
-                      }}
-                      className="text-xs font-bold text-orange-600 hover:text-orange-700 transition-colors"
-                    >
-                      Mettre à jour le statut →
-                    </button>
+                    <div className="flex items-center gap-3">
+                      <button 
+                        onClick={() => {
+                          setSelectedDossier(d);
+                          setIsUploadModalOpen(true);
+                        }}
+                        className="text-xs font-bold text-slate-500 hover:text-slate-700 transition-colors"
+                      >
+                        Ajouter un document
+                      </button>
+                      <button 
+                        onClick={() => {
+                          setSelectedDossier(d);
+                          setNewStatus('douane');
+                          setIsStatusModalOpen(true);
+                        }}
+                        className="text-xs font-bold text-orange-600 hover:text-orange-700 transition-colors"
+                      >
+                        Mettre à jour le statut →
+                      </button>
+                    </div>
                   </div>
                 </CardContent>
               </Card>
@@ -272,6 +289,84 @@ export default function ProClient({ initialQuotes, initialDossiers, isVerified =
           </div>
         )}
       </div>
+
+      {/* Modal d'Upload de Document */}
+      {isUploadModalOpen && (
+        <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-slate-900/50 backdrop-blur-sm animate-in fade-in duration-200">
+          <div className="bg-white rounded-2xl shadow-xl w-full max-w-sm overflow-hidden border border-slate-100">
+            <div className="flex justify-between items-center p-6 border-b border-slate-100">
+              <h3 className="text-lg font-bold text-slate-800">Ajouter un document</h3>
+              <button onClick={() => !isUploading && setIsUploadModalOpen(false)} className="text-slate-400 hover:text-slate-600">
+                <X className="w-5 h-5" />
+              </button>
+            </div>
+            <div className="p-6">
+              <form onSubmit={async (e) => {
+                e.preventDefault();
+                if (!selectedDossier?.id || !docName) return;
+                setIsUploading(true);
+                const { uploadDocumentAction } = await import('@/app/actions/upload_document');
+                const res = await uploadDocumentAction({
+                  shipmentId: selectedDossier.id,
+                  name: docName,
+                  docType: docType,
+                  fileUrl: "/demo-docs/" + docType.toLowerCase() + ".pdf",
+                  sizeBytes: Math.floor(Math.random() * 3000000) + 500000 // mock size
+                });
+                setIsUploading(false);
+                if (res.success) {
+                  setIsUploadModalOpen(false);
+                  setDocName("");
+                  alert('Document ajouté avec succès ! Le marchand a été notifié.');
+                } else {
+                  alert('Erreur: ' + res.error);
+                }
+              }} className="space-y-4">
+                <div className="space-y-2">
+                  <label className="text-sm font-semibold text-slate-700">Nom du fichier</label>
+                  <input 
+                    type="text" 
+                    placeholder="Ex: Facture Proforma N°244"
+                    required
+                    value={docName}
+                    onChange={(e) => setDocName(e.target.value)}
+                    className="w-full bg-slate-50 border border-slate-200 rounded-lg px-4 py-2 text-sm focus:border-orange-500 focus:ring-1 focus:ring-orange-500 outline-none"
+                  />
+                </div>
+                <div className="space-y-2">
+                  <label className="text-sm font-semibold text-slate-700">Type de document</label>
+                  <select 
+                    value={docType}
+                    onChange={(e) => setDocType(e.target.value)}
+                    className="w-full bg-slate-50 border border-slate-200 rounded-lg px-4 py-2 text-sm focus:border-orange-500 focus:ring-1 focus:ring-orange-500 outline-none"
+                  >
+                    <option value="Facture">Facture</option>
+                    <option value="Transport">Connaissement (Transport)</option>
+                    <option value="Douane">Quittance Douane</option>
+                    <option value="Légal">Légal / Assurance</option>
+                  </select>
+                </div>
+                <div className="space-y-2">
+                  <label className="text-sm font-semibold text-slate-700">Fichier PDF</label>
+                  <div className="border-2 border-dashed border-slate-200 rounded-lg p-6 flex flex-col items-center justify-center bg-slate-50 text-slate-400 cursor-pointer hover:bg-slate-100 hover:border-orange-300 transition-colors">
+                    <FileText className="w-6 h-6 mb-2" />
+                    <span className="text-xs font-medium">Cliquez pour téléverser (Demo)</span>
+                  </div>
+                </div>
+                <button 
+                  type="submit" 
+                  disabled={isUploading || !docName}
+                  className={`w-full py-2.5 bg-orange-600 hover:bg-orange-700 text-white font-bold rounded-lg transition-colors flex items-center justify-center gap-2 ${isUploading || !docName ? 'opacity-50 cursor-not-allowed' : ''}`}
+                >
+                  {isUploading ? (
+                    <><span className="w-4 h-4 border-2 border-white/30 border-t-white rounded-full animate-spin"></span> Envoi...</>
+                  ) : 'Téléverser le document'}
+                </button>
+              </form>
+            </div>
+          </div>
+        </div>
+      )}
 
       {/* Modal de mise à jour de statut */}
       {isStatusModalOpen && (

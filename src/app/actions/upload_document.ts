@@ -3,62 +3,57 @@
 import { createClient } from "@/lib/supabase/server"
 import { revalidatePath } from "next/cache"
 
-export async function uploadDocument(formData: FormData) {
-  const file = formData.get("file") as File
-  if (!file) return { error: "Aucun fichier sélectionné." }
-
-  if (!process.env.NEXT_PUBLIC_SUPABASE_URL) {
-    // Mode démo sans DB
-    console.log("Mock upload :", file.name)
-    return { success: true }
-  }
-
+export async function uploadDocumentAction(data: {
+  shipmentId: string
+  name: string
+  docType: string
+  fileUrl: string // Mocked file URL for now
+  sizeBytes: number
+}) {
   const supabase = await createClient()
-  const { data: userData } = await supabase.auth.getUser()
 
-  if (!userData?.user) {
-    console.warn("Mode démo: upload de document simulé car non authentifié")
-    return { success: true }
+  const { data: userData, error: authError } = await supabase.auth.getUser()
+  if (authError || !userData?.user) {
+    return { success: false, error: "Non autorisé" }
   }
 
-  // Nettoyage du nom de fichier
-  const fileName = `${Date.now()}_${file.name.replace(/[^a-zA-Z0-9.\-_]/g, '_')}`
-  const filePath = `${userData.user.id}/${fileName}`
+  // Ensure user is the transitaire for this shipment, or admin
+  const { data: shipment, error: shipError } = await supabase
+    .from('shipments')
+    .select('transitaire_id')
+    .eq('id', data.shipmentId)
+    .single()
 
-  let fileUrl = ""
-
-  // 1. Essai d'upload vers Supabase Storage (bucket 'documents')
-  const { data: uploadData, error: uploadError } = await supabase.storage
-    .from('documents')
-    .upload(filePath, file)
-
-  if (uploadError) {
-    console.warn("Échec de l'upload Storage (le bucket 'documents' n'existe peut-être pas). Utilisation d'une URL factice.", uploadError.message)
-    fileUrl = `/mock-url/${fileName}`
-  } else {
-    const { data: publicUrlData } = supabase.storage.from('documents').getPublicUrl(filePath)
-    fileUrl = publicUrlData.publicUrl
+  if (shipError || !shipment) {
+    return { success: false, error: "Expédition introuvable" }
   }
 
-  // 2. Insertion en base de données
-  const { error: dbError } = await supabase.from('documents').insert([
-    {
-      client_id: userData.user.id,
-      name: file.name,
-      url: fileUrl,
-      type: file.type.includes('pdf') ? 'pdf' : (file.type.includes('image') ? 'image' : 'autre'),
-      size_bytes: file.size,
-      status: 'en_attente'
+  // For MVP, we'll allow transitaire to upload. We could also allow admin.
+  if (shipment.transitaire_id !== userData.user.id) {
+    // Check if admin
+    const { data: profile } = await supabase.from('profiles').select('role').eq('id', userData.user.id).single()
+    if (profile?.role !== 'admin') {
+      return { success: false, error: "Vous n'êtes pas autorisé à uploader pour ce conteneur." }
     }
-  ])
+  }
 
-  if (dbError) {
-    console.error("Erreur lors de l'insertion en BD:", dbError)
-    // Ne pas bloquer l'UI en mode test, on simule un succès
-    return { success: true, warning: "Fichier non enregistré en base (erreur de schéma)." }
+  const { error } = await supabase.from('documents').insert([{
+    shipment_id: data.shipmentId,
+    uploaded_by: userData.user.id,
+    name: data.name,
+    doc_type: data.docType,
+    file_url: data.fileUrl,
+    size_bytes: data.sizeBytes,
+    status: 'Vérifié'
+  }])
+
+  if (error) {
+    console.error("Error uploading document:", error)
+    return { success: false, error: "Erreur lors de l'enregistrement du document" }
   }
 
   revalidatePath('/dashboard/documents')
+  revalidatePath('/dashboard/shipments')
+  
   return { success: true }
 }
-
